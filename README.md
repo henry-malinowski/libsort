@@ -17,3 +17,4 @@ Some of the non-comparative algorithms would be...
 * Count sort
 * Radix Sort (LSD)
 * Radix Sort (MSD)
+* Bucket Sort
