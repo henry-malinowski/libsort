@@ -1,0 +1,3 @@
+Seeds that failed to sort:
+seed, int array size
+#4677899137446707798, 64 generate no duplicate numbers. Odds were around 0.04%
