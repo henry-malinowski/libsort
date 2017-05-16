@@ -20,4 +20,4 @@ Some of the non-comparative algorithms would be...
 * [Bucket Sort](https://en.wikipedia.org/wiki/Bucket_sort)
 
 Behavior for sorting non-integer type would be undefined, but they would 
-support sorting of any integer type
+support sorting of any integer type.
