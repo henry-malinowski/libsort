@@ -19,5 +19,5 @@ Some of the non-comparative algorithms would be...
 * [Radix Sort (MSD)](https://en.wikipedia.org/wiki/Radix_sort#Most_significant_digit_radix_sorts)
 * [Bucket Sort](https://en.wikipedia.org/wiki/Bucket_sort)
 
-Behavior for sorting non-integer type would be undefined, but they would 
-support sorting of any integer type.
+Behavior for sorting non-integer types would be undefined, but the functions
+ would support sorting of any integer type.
