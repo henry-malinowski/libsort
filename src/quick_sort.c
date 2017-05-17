@@ -54,9 +54,10 @@ quick_sort(void* base, size_t nmbers, size_t size,
     if (nmbers <= 1) return;
 
     /* - partition the array
-     * - the the memory address of the partition to calculate the index of the
-     *   partition in array.
-     * - This becomes the upper limit of the first recursive quick_sort call.
+     * - store the memory address of the pivot after partitioning.
+     * - Use the pivot pointer to calculate the index of the pivot in array.
+     * - The index becomes the upper limit of the first recursive quick_sort
+     *   call.
      * - The the pivot index subtracted from the nmbers with (1 removed to
      *   exclude the pivot itself from the count), is the nmbers in the second
      *   recursive call.
