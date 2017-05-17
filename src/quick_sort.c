@@ -47,5 +47,24 @@ void
 quick_sort(void* base, size_t nmbers, size_t size,
                     int (*cmp)(const void*, const void*))
 {
+    void* pivot;        /* the return value from the partition function    */
+    size_t pivot_index; /* the intermediate value for finding upper-bounds */
 
+    /* Reaching 1 element is the base case */
+    if (nmbers <= 1) return;
+
+    /* - partition the array
+     * - the the memory address of the partition to calculate the index of the
+     *   partition in array.
+     * - This becomes the upper limit of the first recursive quick_sort call.
+     * - The the pivot index subtracted from the nmbers with (1 removed to
+     *   exclude the pivot itself from the count), is the nmbers in the second
+     *   recursive call.
+     */
+    pivot = partition_lomuto(base, nmbers, size, cmp);
+    pivot_index = (pivot - base)/size;
+
+    /* Make the recursive calls */
+    quick_sort(base, pivot_index, size, cmp);
+    quick_sort(pivot+size, (nmbers-pivot_index)-1, size, cmp);
 }
