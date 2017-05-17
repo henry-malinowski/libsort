@@ -28,7 +28,7 @@ partition_verify(const void* base, size_t nmbers, size_t size,
     /* check value less than the pivot */
     while (base < pivot && base < upper_limit)
     {
-        if (cmp(base, pivot) > 0)/* if true, a swap that needs to ocurr did not*/
+        if (cmp(base, pivot) > 0)/* if true, a swap that needs to occur did not*/
             return 0;
         else
             base += size;
@@ -66,7 +66,6 @@ partition_lomuto(void *base, size_t nmbers, size_t size,
             i += size;
         }
 
-
         j += size; /* increment j */
     }
 
@@ -75,3 +74,35 @@ partition_lomuto(void *base, size_t nmbers, size_t size,
 
     return i;
 }
+
+
+void*
+partition_hoare(void *base, size_t nmbers, size_t size,
+                int (*cmp)(const void *, const void *))
+{
+    void* pivot = base;           /* pivot is the left-most element           */
+    void* i = base - size;        /* incremented before cmp (won't access oob)*/
+    void* j = base+(nmbers*size); /* decremented before cmp (won't access oob)*/
+
+    /* Perform Hoare's partitioning until pointers i and j meet. */
+    while (i < j)
+    {
+        /* Find the leftmost element "greater than" or equal to the pivot */
+        do
+        {
+            i += size;
+        } while (cmp(i, pivot) < 0);
+
+        /* Find the rightmost element "less than" or equal to the pivot */
+        do
+        {
+            j -= size;
+        } while (cmp(j, pivot) > 0);
+
+        SWAP(i, j, size);
+    }
+
+    return j;
+}
+
+

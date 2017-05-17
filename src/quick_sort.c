@@ -32,7 +32,7 @@
 #define SWAP(a, b, size)                \
     do                                  \
     {                                   \
-        size_t __size = (size);			\
+        size_t __size = (size);         \
         char *__a = (a), *__b = (b);    \
         do                              \
         {                               \
@@ -62,7 +62,7 @@ quick_sort(void* base, size_t nmbers, size_t size,
      *   exclude the pivot itself from the count) is the nmbers in the second
      *   recursive call.
      */
-    pivot = partition_lomuto(base, nmbers, size, cmp);
+    pivot = partition_hoare(base, nmbers, size, cmp);
     pivot_index = (pivot - base)/size;
 
     /* Make the recursive calls */

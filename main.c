@@ -93,7 +93,7 @@ int main(void) {
     uint32_t array_int[6] = {0};
     const size_t len_array_int = ARRAY_SIZE(array_int);
 
-    uint16_t array_short[2048] = {0};
+    uint16_t array_short[32] = {0};
     const size_t len_array_short = ARRAY_SIZE(array_short);
 
     // fill it with 8-bit numbers from Mersenne Twister
@@ -137,7 +137,7 @@ int main(void) {
         }
     }
     //</editor-fold>
-    if (isSorted) main();
+    //if (isSorted) main();
 }
 
 /* fills array \p a with 8-bit values */
