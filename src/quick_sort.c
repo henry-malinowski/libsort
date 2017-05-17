@@ -59,7 +59,7 @@ quick_sort(void* base, size_t nmbers, size_t size,
      * - The index becomes the upper limit of the first recursive quick_sort
      *   call.
      * - The the pivot index subtracted from the nmbers with (1 removed to
-     *   exclude the pivot itself from the count), is the nmbers in the second
+     *   exclude the pivot itself from the count) is the nmbers in the second
      *   recursive call.
      */
     pivot = partition_lomuto(base, nmbers, size, cmp);
