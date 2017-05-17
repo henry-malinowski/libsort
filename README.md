@@ -19,5 +19,11 @@ Some of the non-comparative algorithms would be...
 * [Radix Sort (MSD)](https://en.wikipedia.org/wiki/Radix_sort#Most_significant_digit_radix_sorts)
 * [Bucket Sort](https://en.wikipedia.org/wiki/Bucket_sort)
 
+Some non-sorting functions would also be included to either
+assist in sorting, and as example of good or bad algorithms.
+* [Lomuto's partition](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
+* [Hoare's partition](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme)
+* [Array merge](https://en.wikipedia.org/wiki/Merge_algorithm#Merging_two_lists)
+
 Behavior for sorting non-integer types would be undefined, but the functions
  would support sorting of any integer type.

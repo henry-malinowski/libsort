@@ -9,6 +9,7 @@
 #include "./include/issorted.h"
 #include "./include/network_sorting.h"
 #include "./include/bubble_sort.h"
+#include "./include/partition.h"
 
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
 
@@ -113,10 +114,13 @@ int main(void) {
     double start = omp_get_wtime();
     //qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //selection_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    bubble_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    //bubble_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    void* piv = partition_lomuto(array_short, len_array_short, sizeof(uint16_t), cmp);
+
     double delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
+    /*
     int isSorted = issorted(array_short, len_array_short, sizeof(uint16_t), cmp);
     if (isSorted) {
         printf("array is sorted in %.4f sec.\n", delta);
@@ -124,6 +128,7 @@ int main(void) {
         printf("\narray is not sorted\n");
         return 2;
     }
+    */
     //</editor-fold>
 
     //<editor-fold desc="Display contents (array_int)">
@@ -133,6 +138,9 @@ int main(void) {
             if ((i+1)% 16 == 0) printf("\n");
         }
     }
+
+    printf("pivot is %5hu at %p (%zu th  element)\n", *(uint16_t*)piv,
+           piv, (piv - (void*)array_short)/sizeof(uint16_t));
     //</editor-fold>
 }
 
