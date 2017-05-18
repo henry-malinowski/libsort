@@ -179,13 +179,13 @@ void fill_array_uint8(uint32_t *a, size_t len) {
 
     // handle remaining cases
     switch (remaining) {
-        case 7: a[i + 6] = nums.a[i + 0];
-        case 6: a[i + 5] = nums.a[i + 2];
-        case 5: a[i + 4] = nums.a[i + 3];
-        case 4: a[i + 3] = nums.a[i + 4];
-        case 3: a[i + 2] = nums.a[i + 5];
-        case 2: a[i + 1] = nums.a[i + 6];
-        case 1: a[i + 0] = nums.a[i + 1];
+        case 7: a[i + 6] = nums.a[0];
+        case 6: a[i + 5] = nums.a[2];
+        case 5: a[i + 4] = nums.a[3];
+        case 4: a[i + 3] = nums.a[4];
+        case 3: a[i + 2] = nums.a[5];
+        case 2: a[i + 1] = nums.a[6];
+        case 1: a[i + 0] = nums.a[1];
         default: ;
     }
 }
@@ -216,9 +216,9 @@ void fill_array_uint16(uint16_t *a, size_t len) {
 
     // handle remaining cases
     switch (remaining) {
-        case 3: a[i + 2] = nums.a[i + 2];
-        case 2: a[i + 1] = nums.a[i + 1];
-        case 1: a[i + 0] = nums.a[i + 0];
+        case 3: a[i + 2] = nums.a[2];
+        case 2: a[i + 1] = nums.a[1];
+        case 1: a[i + 0] = nums.a[0];
         default:;
     }
 }
