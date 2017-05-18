@@ -68,7 +68,7 @@ quick_sort(void* base, size_t nmbers, size_t size,
     pivot = partition_hoare(base, nmbers, size, cmp);
     pivot_index = (pivot - base)/size;
 
-    assert(pivot_index != SIZE_MAX);
+    assert(partition_verify(base, nmbers, size, cmp, pivot) == 1);
     //assert(((nmbers-pivot_index)-1) != SIZE_MAX);
 
     /* Make the recursive calls */

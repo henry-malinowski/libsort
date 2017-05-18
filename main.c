@@ -86,7 +86,7 @@ int main(void) {
     union u_seed seed;
     seed.d = omp_get_wtime();
     mt_seed(seed.i);
-    //mt_seed(4676236608565431931ULL);
+    //mt_seed(4659345558749990174ULL);
     printf("\nMersenne Twister seed: %zu\n\n", seed.i);
     //</editor-fold>
 
@@ -94,7 +94,7 @@ int main(void) {
     uint32_t array_int[6] = {0};
     const size_t len_array_int = ARRAY_SIZE(array_int);
 
-    uint16_t array_short[32] = {0};
+    uint16_t array_short[16] = {0};
     const size_t len_array_short = ARRAY_SIZE(array_short);
 
     // fill it with 8-bit numbers from Mersenne Twister
@@ -137,11 +137,16 @@ int main(void) {
             if ((i+1)% 16 == 0) printf("\n");
         }
     }
+    printf("\n");
     //</editor-fold>
 
-    printf("partition is the %zu th element (%p), value of %hu\n",
-           (piv - (void*)array_short)/sizeof(array_short[0]), piv, *(uint16_t*)piv);
-
+    printf("partition is the a[%zu] element (%p), value of %hu\n",
+           (piv - (void*)array_short)/sizeof(array_short[0]), piv,
+           *(uint16_t*)piv);
+    if(isPart) {
+        printf("\n-----------------------------------------------------\n");
+        main();
+    }
 }
 
 /* fills array \p a with 8-bit values */

@@ -25,6 +25,7 @@
 
 #include <malloc.h>
 #include <assert.h>
+#include <memory.h>
 #include "../include/partition.h"
 
 /**
@@ -123,29 +124,31 @@ partition_hoare(void *base, size_t nmbers, size_t size,
                 int (*cmp)(const void *, const void *))
 {
     void* i = base;
-    void* j = base+((nmbers-1)*size);
+    void* j = base + ((nmbers-1)*size);
     void* pivot = malloc(size);
 
     assert(pivot != NULL);
-    COPY(pivot, base, size);
+    //COPY(pivot, base, size);
+
+    memcpy(pivot, base, size);
 
     /* Perform Hoare's partitioning until pointers i and j meet. */
-    while (1)
-    {
-        /* Find the rightmost element "less than" or equal to the pivot */
-        while (cmp(j, pivot) > 0) j -= size;
-
+    while (1) {
         /* Find the leftmost element "greater than" or equal to the pivot */
-        while (cmp(i, pivot) < 0) i += size;
+        while (cmp(i, pivot) < 0)
+            i += size;
 
-        if (j >= i) break;
-        else SWAP(i, j, size);
+        /* Find the rightmost element "less than" or equal to the pivot */
+        while (cmp(j, pivot) > 0)
+            j -= size;
 
+
+        if (i < j) SWAP(i, j, size);
+        else break;
     }
 
     free(pivot);
-
-    return i;
+    return j;
 }
 
 
