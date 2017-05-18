@@ -23,6 +23,8 @@
  * SOFTWARE.
  */
 
+#include <malloc.h>
+#include <assert.h>
 #include "../include/partition.h"
 
 /**
@@ -39,6 +41,21 @@
             char __tmp = *__a;          \
             *__a++ = *__b;              \
             *__b++ = __tmp;             \
+        } while (--__size > 0);         \
+    } while (0)
+
+
+/**
+ * @brief Copies (size) bytes from pointer b to pointer a.
+ */
+#define COPY(a, b, size)                \
+    do                                  \
+    {                                   \
+        size_t __size = (size);         \
+        char *__a = (a), *__b = (b);    \
+        do                              \
+        {                               \
+            *__a++ = *__b++;            \
         } while (--__size > 0);         \
     } while (0)
 
@@ -105,29 +122,30 @@ void*
 partition_hoare(void *base, size_t nmbers, size_t size,
                 int (*cmp)(const void *, const void *))
 {
-    void* pivot = base;           /* pivot is the left-most element           */
-    void* i = base - size;        /* incremented before cmp (won't access oob)*/
-    void* j = base+(nmbers*size); /* decremented before cmp (won't access oob)*/
+    void* i = base;
+    void* j = base+((nmbers-1)*size);
+    void* pivot = malloc(size);
+
+    assert(pivot != NULL);
+    COPY(pivot, base, size);
 
     /* Perform Hoare's partitioning until pointers i and j meet. */
-    while (i < j)
+    while (1)
     {
-        /* Find the leftmost element "greater than" or equal to the pivot */
-        do
-        {
-            i += size;
-        } while (cmp(i, pivot) < 0);
-
         /* Find the rightmost element "less than" or equal to the pivot */
-        do
-        {
-            j -= size;
-        } while (cmp(j, pivot) > 0);
+        while (cmp(j, pivot) > 0) j -= size;
 
-        SWAP(i, j, size);
+        /* Find the leftmost element "greater than" or equal to the pivot */
+        while (cmp(i, pivot) < 0) i += size;
+
+        if (j >= i) break;
+        else SWAP(i, j, size);
+
     }
 
-    return j;
+    free(pivot);
+
+    return i;
 }
 
 

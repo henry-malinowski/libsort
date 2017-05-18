@@ -1,3 +1,7 @@
 Seeds that failed to sort:
 seed, int array size
 #4677899137446707798, 64 generate no duplicate numbers. Odds were around 0.04%
+
+#quick sort (Hoare paritioning)
+4671040523844506026, 32 # failed to sort, but didn't crash
+4671050390050162593, 32 # failed to sort, but didn't crash

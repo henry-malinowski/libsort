@@ -2,6 +2,7 @@
 #include <omp.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "mt19937-64.h"
 
 #include "./include/insertion_sort.h"
@@ -113,19 +114,19 @@ int main(void) {
 
 
     double start = omp_get_wtime();
-    qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    //qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //selection_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //bubble_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    //void* piv = partition_lomuto(array_short, len_array_short, sizeof(uint16_t), cmp);
+    void* piv = partition_hoare(array_short, len_array_short, sizeof(uint16_t), cmp);
     //quick_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
     double delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is partitioned">
-    int isSorted = issorted(array_short, len_array_short, sizeof(uint16_t), cmp);
-    if (isSorted) {
-        printf("array is sorted in %.4f sec.\n", delta);
+    int isPart = partition_verify(array_short, len_array_short, sizeof(uint16_t), cmp, piv);
+    if (isPart) {
+        printf("array is partitioned in %.4f sec.\n", delta);
     } else {
-        printf("\narray is not sorted\n");
+        printf("\narray is not partitioned\n");
     }
     //</editor-fold>
 
@@ -137,7 +138,10 @@ int main(void) {
         }
     }
     //</editor-fold>
-    //if (isSorted) main();
+
+    printf("partition is the %zu th element (%p), value of %hu\n",
+           (piv - (void*)array_short)/sizeof(array_short[0]), piv, *(uint16_t*)piv);
+
 }
 
 /* fills array \p a with 8-bit values */

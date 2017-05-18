@@ -84,6 +84,7 @@ void* partition_lomuto(void* base, size_t nmbers, size_t size,
  * Hoare partition scheme (Quicksort) | Wikipedia</a>
  * @see <a href="http://www.geeksforgeeks.org/hoares-vs-lomuto-partition-scheme-quicksort/">
  * Hoare’s vs Lomuto partition scheme in QuickSort | GeeksforGeeks </a>
+ * @bug pivot_index evaluating to less than 0?
  */
 void* partition_hoare(void *base, size_t nmbers, size_t size,
                       int (*cmp)(const void *, const void *));

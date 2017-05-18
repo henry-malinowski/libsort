@@ -22,6 +22,9 @@
  * SOFTWARE.
  */
 
+#include <assert.h>
+#include <stdint.h>
+
 #include "../include/quick_sort.h"
 #include "../include/partition.h"
 
@@ -64,6 +67,9 @@ quick_sort(void* base, size_t nmbers, size_t size,
      */
     pivot = partition_hoare(base, nmbers, size, cmp);
     pivot_index = (pivot - base)/size;
+
+    assert(pivot_index != SIZE_MAX);
+    //assert(((nmbers-pivot_index)-1) != SIZE_MAX);
 
     /* Make the recursive calls */
     quick_sort(base, pivot_index, size, cmp);
