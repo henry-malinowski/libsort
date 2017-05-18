@@ -29,3 +29,10 @@ assist in sorting, and as example of good or bad algorithms.
 
 Behavior for sorting non-integer types would be undefined, but the functions
  would support sorting of any integer type.
+
+
+This library will also have will also come with some testing functions to debug 
+and verify the result of the sorting and partitioning functions. To achieve this
+goal the library will also come with some nice generator functions, so that one
+can quickly fill arrays with random data. These will also be easily extensible 
+due to the extensive use of function pointers in the generator functions.

@@ -2,29 +2,34 @@
 #include "../mt19937-64.h"
 #include <omp.h>
 
-typedef union u_time_seed{
+/**
+ * @brief Union that allows for the easy extraction of the bits from the
+ *  double time returned omp_get_wtime() without bitwise manipulations.
+ */
+typedef union {
     double time;
     uint64_t d;
 } time_seed;
 
 
 /**
- * @brief Union that allows for the easy extraction of signed 32 bit values from
- *  an unsigned 64 bit source without using bitwise shifts.
- */
-typedef union u_rand_int32_t{
-    uint64_t num;
-    int32_t a[2];
-} rand_int32_t;
-
-/**
  * @brief Union that allows for the easy extraction of signed 16 bit values from
  *  an unsigned 64 bit source without using bitwise shifts.
  */
-typedef union u_rand_int16_t{
+typedef union {
     uint64_t num;
     int16_t a[4];
 } rand_int16_t;
+
+
+/**
+ * @brief Union that allows for the easy extraction of signed 32 bit values from
+ *  an unsigned 64 bit source without using bitwise shifts.
+ */
+typedef union {
+    uint64_t num;
+    int32_t a[2];
+} rand_int32_t;
 
 
 uint64_t
@@ -32,8 +37,7 @@ array_fill_fp32(float* a, size_t size, void (*rseed)(uint64_t),
                 float(*rand_float)(void))
 {
     /* Seed the PRNG */
-    time_seed t;
-    t.time = omp_get_wtime();
+    time_seed t = {.time = omp_get_wtime()};
     rseed(t.d);
 
     /* Fill the array with random floats */
@@ -51,8 +55,7 @@ array_fill_fp64(double* a, size_t size, void (*rseed)(uint64_t),
                 double (*rand_double)(void))
 {
     /* Seed the PRNG */
-    time_seed t;
-    t.time = omp_get_wtime();
+    time_seed t = {.time = omp_get_wtime()};
     rseed(t.d);
 
     /* Fill the array with random floats */
@@ -69,6 +72,8 @@ uint64_t
 array_fill_int16_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
                    uint64_t (*rand_uint64_t)(void))
 {
+    time_seed seed = {.time = omp_get_wtime()};
+    rseed(seed.d);
     rand_int32_t nums;
 
     size_t i = 0;
@@ -97,6 +102,8 @@ array_fill_int16_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
             default:;
         }
     }
+
+    return seed.d;
 }
 
 
@@ -104,6 +111,9 @@ uint64_t
 array_fill_int32_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
                    uint64_t (*rand_uint64_t)(void))
 {
+    time_seed seed = {.time = omp_get_wtime()};
+    rseed(seed.d);
+
     rand_int32_t nums;
 
     size_t i = 0;
@@ -121,10 +131,12 @@ array_fill_int32_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
     }
 
     // handle remaining cases
-    if (remaining == 1) {
+    if (remaining != 0) {
         nums.num = rand_uint64_t();
         a[i] = nums.a[0] ^ nums.a[1];
     }
+
+    return seed.d;
 }
 
 

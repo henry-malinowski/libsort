@@ -143,10 +143,10 @@ int main(void) {
     printf("partition is the a[%zu] element (%p), value of %hu\n",
            (piv - (void*)array_short)/sizeof(array_short[0]), piv,
            *(uint16_t*)piv);
-    if(isPart) {
+/*    if(isPart) {
         printf("\n-----------------------------------------------------\n");
         main();
-    }
+    }*/
 }
 
 /* fills array \p a with 8-bit values */
