@@ -50,7 +50,7 @@ partition_lomuto_tests(void)
     printf("\nseed of the driver rand was %u\n", driverrand);
     srand(driverrand);
 
-    for (uint32_t i = 0; i < PARTITION_TESTS; ++i) {
+    for (uint32_t i = 0; i < PARTITION_TESTS*5; ++i) {
         /* Select random array type and set string for user output later */
         array_type = (ARRAY_TYPE) (rand() % 5); // 5 is the number of ARRAY_TYPEs
         array_type_name = &array_type_names[(int)array_type];
