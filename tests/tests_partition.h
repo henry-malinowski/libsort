@@ -5,7 +5,7 @@
  * @brief The numbers of tests to run for each patition scheme.
  * This can be defined using compiler arguments */
 #ifndef PARTITION_TESTS
-#define PARTITION_TESTS 1000
+#define PARTITION_TESTS 5000
 #endif
 
 void partition_lomuto_tests(void);

@@ -51,12 +51,12 @@ partition_lomuto_tests(void)
     srand(driverrand);
 
     // TODO change upper bound to PARTITION_TESTS
-    for (uint32_t i = 0; i < 1000; ++i) {
+    for (uint32_t i = 0; i < PARTITION_TESTS; ++i) {
         /* Select random array type and set string for user output later */
         array_type = (ARRAY_TYPE) (rand() % 5); // 5 is the number of ARRAY_TYPEs
         array_type_name = &array_type_names[(int)array_type];
 
-        array_nmbers = (size_t) 50 + (rand() % 400);
+        array_nmbers = (size_t) 3 + (rand() % 1000);
 
         //<editor-fold desc="Select element size, pick less_than, and allocate array">
         switch (array_type) {
@@ -133,9 +133,7 @@ partition_lomuto_tests(void)
                 seed, array_nmbers, *array_type_name
         );
 
-        // TODO FREE MEMORY
-        memset(array, 0, array_nmbers*type_size);
-        //free(array);
+        free(array);
     }
 
     fprintf(stdout,
