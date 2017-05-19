@@ -46,7 +46,7 @@ partition_lomuto_tests(void)
     void* pivot = NULL;
     int is_part;
 
-    unsigned driverrand = 2; //(unsigned) time(NULL);
+    unsigned driverrand = (unsigned) time(NULL);
     printf("\nseed of the driver rand was %u\n", driverrand);
     srand(driverrand);
 
@@ -82,7 +82,7 @@ partition_lomuto_tests(void)
                 break;
         }
 
-        array = calloc(array_nmbers+1, type_size);
+        array = calloc(array_nmbers, type_size);
         //</editor-fold>
 
         // check for malloc failure
