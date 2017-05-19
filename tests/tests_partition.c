@@ -27,6 +27,13 @@ char* array_type_names[] = {"INT_16", "INT_32", "INT_64", "FP32", "FP64"};
 void
 partition_lomuto_tests(void)
 {
+    FILE* old_stdout = stdout;
+    stdout = fopen("/dev/null", "w+");
+
+    #ifdef TESTS_VERBOSE
+        stdout = old_stdout;
+    #endif
+
     // Track the number of tests ran and report to caller on stdout.
     uint32_t total_tests = 0;
     uint32_t passes = 0;
@@ -117,24 +124,26 @@ partition_lomuto_tests(void)
         free(array);
 
         if (is_part) {
-            printf("Array succeed in partitioning\n");
+            fprintf(stdout, "Array succeed in partitioning\n");
             ++total_tests;
             ++passes;
         } else {
-            printf("Array failed to partition\n");
+            fprintf(stdout, "Array failed to partition\n");
             ++total_tests;
-
         }
 
-#ifdef TESTS_VERBOSE
         fprintf(stdout,
                 "  ├seed: %zu\n"
                 "  ├size: %zu\n"
                 "  └type: %s\n\n",
                 seed, array_nmbers, *array_type_name
         );
-#endif /* TESTS_VERBOSE */
     }
+
+    // reset stdout to normal mode.
+    fflush(stdout);
+    fclose(stdout);
+    stdout = old_stdout;
 
     fprintf(stdout,
             "Totals\n"
@@ -144,6 +153,6 @@ partition_lomuto_tests(void)
             total_tests, passes, total_tests-passes
     );
     if (malloc_failed) {
-        fprintf(stderr, "malloc failed\n");
+        fprintf(stderr, "fatal: calloc failed to allocate %zu bytes\n", array_nmbers*type_size);
     }
 }
