@@ -112,8 +112,9 @@ partition_lomuto_tests(void)
 
 
         pivot = partition_lomuto(array, array_nmbers, type_size, less_than);
-        //pivot = partition_hoare(array, array_nmbers, type_size, less_than);
         is_part = partition_verify(array, array_nmbers, type_size, less_than, pivot);
+
+        free(array);
 
         if (is_part) {
             printf("Array succeed in partitioning\n");
@@ -125,14 +126,14 @@ partition_lomuto_tests(void)
 
         }
 
+#ifdef TESTS_VERBOSE
         fprintf(stdout,
                 "  ├seed: %zu\n"
                 "  ├size: %zu\n"
                 "  └type: %s\n\n",
                 seed, array_nmbers, *array_type_name
         );
-
-        free(array);
+#endif /* TESTS_VERBOSE */
     }
 
     fprintf(stdout,
