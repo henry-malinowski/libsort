@@ -4,10 +4,6 @@
 #ifndef TESTS_PARTITION_H
 #define TESTS_PARTITION_H
 
-void driver_tests(void);
-
-void array_fill_int16(int16_t* a, size_t);
-void array_fill_int64(int64_t* a, size_t);
 void seed_prng(uint64_t seed);
 
 
@@ -19,6 +15,12 @@ array_fill_int16_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
 uint64_t
 array_fill_int32_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
                    uint64_t (*rand_uint64_t)(void));
+
+
+uint64_t
+array_fill_int64_t(int64_t* a, size_t size, void (*rseed)(uint64_t),
+                   uint64_t (*rand_uint64_t)(void));
+
 
 /**
  * Fills an array with random floating point values.

@@ -1,4 +1,4 @@
-#include "partition_tests.h"
+#include "array_generators.h"
 #include "../mt19937-64.h"
 #include <omp.h>
 
@@ -22,6 +22,7 @@ typedef union {
 } rand_int16_t;
 
 
+
 /**
  * @brief Union that allows for the easy extraction of signed 32 bit values from
  *  an unsigned 64 bit source without using bitwise shifts.
@@ -30,6 +31,7 @@ typedef union {
     uint64_t num;
     int32_t a[2];
 } rand_int32_t;
+
 
 
 uint64_t
@@ -74,7 +76,7 @@ array_fill_int16_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
 {
     time_seed seed = {.time = omp_get_wtime()};
     rseed(seed.d);
-    rand_int32_t nums;
+    rand_int16_t nums;
 
     size_t i = 0;
     size_t repeat = size / 4;
@@ -96,9 +98,9 @@ array_fill_int16_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
     if (remaining != 0) {
         nums.num = rand_uint64_t();
         switch (remaining) {
-            case 3: a[i+3] = nums.a[3];
-            case 2: a[i+3] = nums.a[2];
-            case 1: a[i+3] = nums.a[1];
+            case 3: a[i+2] = nums.a[2];
+            case 2: a[i+1] = nums.a[1];
+            case 1: a[i+0] = nums.a[0];
             default:;
         }
     }
@@ -139,6 +141,20 @@ array_fill_int32_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
     return seed.d;
 }
 
+
+uint64_t
+array_fill_int64_t(int64_t* a, size_t size, void (*rseed)(uint64_t),
+                   uint64_t (*rand_uint64_t)(void))
+{
+    time_seed seed = {.time = omp_get_wtime()};
+    rseed(seed.d);
+
+    for (size_t i = 0; i < size; ++i) {
+        a[i] = rand_uint64_t();
+    }
+
+    return seed.d;
+}
 
 void
 seed_prng(uint64_t seed) {

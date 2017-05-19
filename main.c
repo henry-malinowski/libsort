@@ -5,13 +5,11 @@
 #include <assert.h>
 #include "mt19937-64.h"
 
-#include "./include/insertion_sort.h"
-#include "./include/selection_sort.h"
 #include "./include/issorted.h"
-#include "./include/network_sorting.h"
 #include "./include/bubble_sort.h"
 #include "./include/partition.h"
 #include "./include/quick_sort.h"
+#include "./tests/tests_partition.h"
 
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
 
@@ -35,8 +33,9 @@ void fill_array_uint8(uint32_t *a, size_t len);
 void fill_array_uint16(uint16_t *a, size_t len);
 
 
+/* Moved to comparison_ints.h
 int
-cmp_leq_int(const void *p, const void *q)
+cmp_less_int32(const void *p, const void *q)
 {
     const int a = *(const int *)p;
     const int b = *(const int *)q;
@@ -47,7 +46,7 @@ cmp_leq_int(const void *p, const void *q)
 }
 
 
-int cmp_leq_short(const void *p, const void *q) {
+int cmp_less_int16(const void *p, const void *q) {
     const uint16_t a = *(const uint16_t *)p;
     const uint16_t b = *(const uint16_t *)q;
 
@@ -55,7 +54,7 @@ int cmp_leq_short(const void *p, const void *q) {
     if (a > b) return +1;
     return 0;
 }
-
+*/
 
 int
 cmp_geq_int(const void *p, const void *q)
@@ -82,71 +81,7 @@ cmp_least_sig_int(const void* p, const void* q)
 
 
 int main(void) {
-    //<editor-fold desc="Seed PRNG (Mersenne Twister)">
-    union u_seed seed;
-    seed.d = omp_get_wtime();
-    mt_seed(seed.i);
-    //mt_seed(4659345558749990174ULL);
-    printf("\nMersenne Twister seed: %zu\n\n", seed.i);
-    //</editor-fold>
-
-    // Declare array of uint32_t
-    uint32_t array_int[6] = {0};
-    const size_t len_array_int = ARRAY_SIZE(array_int);
-
-    uint16_t array_short[16] = {0};
-    const size_t len_array_short = ARRAY_SIZE(array_short);
-
-    // fill it with 8-bit numbers from Mersenne Twister
-    fill_array_uint16(array_short, len_array_short);
-
-    void* cmp = &cmp_leq_short;
-
-    //<editor-fold desc="Display contents (array_short pre-sort)">
-    if (len_array_short <= 128) {
-        for (size_t i = 0; i < len_array_short; ++i) {
-            printf("%5hu, ", array_short[i]);
-            if ((i + 1) % 16 == 0) printf("\n");
-        }
-        printf("\n");
-    }
-    //</editor-fold>gi
-
-
-    double start = omp_get_wtime();
-    //qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    //selection_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    //bubble_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    void* piv = partition_hoare(array_short, len_array_short, sizeof(uint16_t), cmp);
-    //quick_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    double delta = omp_get_wtime() - start;
-
-    //<editor-fold desc="Check if the array is partitioned">
-    int isPart = partition_verify(array_short, len_array_short, sizeof(uint16_t), cmp, piv);
-    if (isPart) {
-        printf("array is partitioned in %.4f sec.\n", delta);
-    } else {
-        printf("\narray is not partitioned\n");
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="Display contents (array_int)">
-    if (len_array_short <= 128) {
-        for (size_t i = 0; i < len_array_short; ++i) {
-            printf("%5hu, ", array_short[i]);
-            if ((i+1)% 16 == 0) printf("\n");
-        }
-    }
-    printf("\n");
-    //</editor-fold>
-
-    printf("partition is the a[%zu] element (%p), value of %hu\n",
-           (piv - (void*)array_short)/sizeof(array_short[0]), piv,
-           *(uint16_t*)piv);
-/*    if(isPart) {
-        printf("\n-----------------------------------------------------\n");
-        main();
-    }*/
+    partition_lomuto_tests();
 }
 
 /* fills array \p a with 8-bit values */
