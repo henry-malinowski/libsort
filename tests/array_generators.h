@@ -5,7 +5,7 @@
 #define TESTS_PARTITION_H
 
 uint64_t
-array_fill_int16_t(int16_t* a, size_t size, void (*rseed)(uint64_t),
+array_fill_int16_t(int16_t* a, size_t nmbers, void (*rseed)(uint64_t),
                    uint64_t (*rand_uint64_t)(void));
 
 
@@ -47,6 +47,7 @@ uint64_t array_fill_fp64(double* a, size_t size, void (*rseed)(uint64_t),
  * @param seed The number to seed the PRNG with.
  */
 void seed_prng(uint64_t seed);
+
 
 /**
  * Uses mt_mt_rand_double_1 to return a pseudo-random number on the

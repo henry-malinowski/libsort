@@ -71,7 +71,7 @@ array_fill_fp64(double* a, size_t size, void (*rseed)(uint64_t),
 
 
 uint64_t
-array_fill_int16_t(int16_t* a, size_t size, void (*rseed)(uint64_t),
+array_fill_int16_t(int16_t* a, size_t nmbers, void (*rseed)(uint64_t),
                    uint64_t (*rand_uint64_t)(void))
 {
     time_seed seed = {.time = omp_get_wtime()};
@@ -79,8 +79,8 @@ array_fill_int16_t(int16_t* a, size_t size, void (*rseed)(uint64_t),
     rand_int16_t nums;
 
     size_t i = 0;
-    size_t repeat = size / 4;
-    size_t remaining = size % 4;
+    size_t repeat = nmbers / 4;
+    size_t remaining = nmbers % 4;
 
     while (repeat--)
     {

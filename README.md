@@ -25,6 +25,8 @@ This would follow the prototype that the C standard outlines for `qsort`.
 * [Bucket Sort](https://en.wikipedia.org/wiki/Bucket_sort)
 
 ### Assisting functions
+* Quick verify sort
+* [Through verify sort](https://4z2.de/2016/02/07/verifying-sorting-algorithms)
 * [Lomuto's partition](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
 * [Hoare's partition](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme)
 * Verify partition

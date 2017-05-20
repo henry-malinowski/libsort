@@ -65,26 +65,26 @@ int
 partition_verify(const void* base, size_t nmbers, size_t size,
                      int (*cmp)(const void *, const void *), void* pivot)
 {
-    register size_t i;
-    register const void* upper_limit = base + (nmbers * size);
+    const char* i = (char*) base;
+    const char* upper_limit = (char*) base + (nmbers * size);
 
     /* check value less than the pivot */
-    while (base < pivot && base < upper_limit)
+    while (i < (char*) pivot && i < upper_limit)
     {
-        if (cmp(base, pivot) > 0)/* if true, a swap that needs to occur did not*/
+        if (cmp(i, pivot) > 0)/* if true, a swap that needs to occur did not*/
             return 0;
         else
-            base += size;
+            i += size;
     }
 
     /* skip of the pivot */
-    base += size;
+    i += size;
 
-    while (base < upper_limit) {
-        if (cmp(base, pivot) <= 0)/* if true, a swap that needs to ocurr did not*/
+    while (i < upper_limit) {
+        if (cmp(i, pivot) <= 0)/* if true, a swap that needs to ocurr did not*/
             return 0;
         else
-            base += size;
+            i += size;
     }
 
     return 1;
@@ -95,10 +95,14 @@ void*
 partition_lomuto(void *base, size_t nmbers, size_t size,
                        int (*cmp)(const void *, const void *))
 {
-    void* i = base;              /* track where the pivot will end up "index" */
-    void* j = base;                         /* main iterator                  */
-    void* pivot = base + ((nmbers-1)*size); /* pivot is the right-most element*/
-
+    /*
+     * i: track where the pivot will end up (a.k.a. index)
+     * j: main iterator
+     * pivot: set as the right most element
+     */
+    char* i = (char*) base;
+    char* j = (char*) base;
+    char* pivot = (char*)base + ((nmbers-1)*size);
 
     /* perform Lomuto's partition up to the element right be fore the pivot */
     while (j < pivot)
@@ -123,9 +127,9 @@ void*
 partition_hoare(void *base, size_t nmbers, size_t size,
                 int (*cmp)(const void *, const void *))
 {
-    void* i = base;
-    void* j = base + ((nmbers-1)*size);
-    void* pivot = malloc(size);
+    char* i = (char*) base;
+    char* j = (char*) base + ((nmbers-1)*size);
+    char* pivot = malloc(size);
 
     assert(pivot != NULL);
     //COPY(pivot, base, size);
