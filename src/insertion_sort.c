@@ -24,10 +24,6 @@
 
 #include "../include/insertion_sort.h"
 
-#ifndef SIZE_MAX
-#define SIZE_MAX ((size_t) - 1)
-#endif
-
 void
 insertion_sort(void *base, size_t nmbers, size_t size,
                int (*cmp)(const void*, const void*))
