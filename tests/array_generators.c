@@ -72,7 +72,7 @@ array_fill_fp64(double* a, size_t nmemb, void (*rseed)(uint64_t),
 
 uint64_t
 array_fill_int16_t(int16_t* a, size_t nmemb, void (*rseed)(uint64_t),
-                   uint64_t (*rand_uint64_t)(void))
+                   uint64_t (*rand_func)(void))
 {
     time_seed seed = {.time = omp_get_wtime()};
     rseed(seed.d);
@@ -85,7 +85,7 @@ array_fill_int16_t(int16_t* a, size_t nmemb, void (*rseed)(uint64_t),
     while (repeat--)
     {
         // Generate batch of random numbers
-        nums.num = rand_uint64_t();
+        nums.num = rand_func();
 
         a[i + 0] = nums.a[0];
         a[i + 1] = nums.a[1];
@@ -96,7 +96,7 @@ array_fill_int16_t(int16_t* a, size_t nmemb, void (*rseed)(uint64_t),
 
     // handle remaining cases
     if (remaining != 0) {
-        nums.num = rand_uint64_t();
+        nums.num = rand_func();
         switch (remaining) {
             case 3: a[i+2] = nums.a[2];
             case 2: a[i+1] = nums.a[1];
@@ -111,7 +111,7 @@ array_fill_int16_t(int16_t* a, size_t nmemb, void (*rseed)(uint64_t),
 
 uint64_t
 array_fill_int32_t(int32_t* a, size_t nmemb, void (*rseed)(uint64_t),
-                   uint64_t (*rand_uint64_t)(void))
+                   uint64_t (*rand_func)(void))
 {
     time_seed seed = {.time = omp_get_wtime()};
     rseed(seed.d);
@@ -125,7 +125,7 @@ array_fill_int32_t(int32_t* a, size_t nmemb, void (*rseed)(uint64_t),
     while (repeat--)
     {
         // Generate batch of random numbers
-        nums.num = rand_uint64_t();
+        nums.num = rand_func();
 
         a[i + 0] = nums.a[0];
         a[i + 1] = nums.a[1];
@@ -134,7 +134,7 @@ array_fill_int32_t(int32_t* a, size_t nmemb, void (*rseed)(uint64_t),
 
     // handle remaining cases
     if (remaining != 0) {
-        nums.num = rand_uint64_t();
+        nums.num = rand_func();
         a[i] = nums.a[0] ^ nums.a[1];
     }
 
@@ -144,13 +144,13 @@ array_fill_int32_t(int32_t* a, size_t nmemb, void (*rseed)(uint64_t),
 
 uint64_t
 array_fill_int64_t(int64_t* a, size_t nmemb, void (*rseed)(uint64_t),
-                   uint64_t (*rand_uint64_t)(void))
+                   uint64_t (*rand_func)(void))
 {
     time_seed seed = {.time = omp_get_wtime()};
     rseed(seed.d);
 
     for (size_t i = 0; i < nmemb; ++i) {
-        a[i] = rand_uint64_t();
+        a[i] = rand_func();
     }
 
     return seed.d;

@@ -6,17 +6,17 @@
 
 uint64_t
 array_fill_int16_t(int16_t* a, size_t nmemb, void (*rseed)(uint64_t),
-                   uint64_t (*rand_uint64_t)(void));
+                   uint64_t (*rand_func)(void));
 
 
 uint64_t
 array_fill_int32_t(int32_t* a, size_t nmemb, void (*rseed)(uint64_t),
-                   uint64_t (*rand_uint64_t)(void));
+                   uint64_t (*rand_func)(void));
 
 
 uint64_t
 array_fill_int64_t(int64_t* a, size_t nmemb, void (*rseed)(uint64_t),
-                   uint64_t (*rand_uint64_t)(void));
+                   uint64_t (*rand_func)(void));
 
 
 /**
