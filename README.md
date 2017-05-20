@@ -9,7 +9,7 @@ allow for sorts be be called as...
 ```
 This would follow the prototype that the C standard outlines for `qsort`.
 
-###Comparative sorts
+### Comparative sorts
 * [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
 * [Shell Sort](https://en.wikipedia.org/wiki/Shellsort)
 * [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
@@ -18,13 +18,13 @@ This would follow the prototype that the C standard outlines for `qsort`.
 * [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort)
 * [Sorting networks of sizes 2 to 8 wires](https://en.wikipedia.org/wiki/Sorting_network)
 
-###Non-Comparative sorts
+### Non-Comparative sorts
 * [Counting sort](https://en.wikipedia.org/wiki/Counting_sort)
 * [Radix Sort (LSD)](https://en.wikipedia.org/wiki/Radix_sort)
 * [Radix Sort (MSD)](https://en.wikipedia.org/wiki/Radix_sort#Most_significant_digit_radix_sorts)
 * [Bucket Sort](https://en.wikipedia.org/wiki/Bucket_sort)
 
-###Assisting functions
+### Assisting functions
 * [Lomuto's partition](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
 * [Hoare's partition](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme)
 * Verify partition
