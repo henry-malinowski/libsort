@@ -48,8 +48,8 @@ int main(void) {
 
 
     double start = omp_get_wtime();
-    qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    //insertion_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    //qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    insertion_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //bubble_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //void* piv = partition_lomuto(array_short, len_array_short, sizeof(uint16_t), cmp);
     //quick_sort(array_short, len_array_short, sizeof(uint16_t), cmp);

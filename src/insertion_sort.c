@@ -54,7 +54,7 @@ insertion_sort(void *base, size_t nmbers, size_t size,
         while ((j != SIZE_MAX) && cmp( b_ptr+(j*size), temp) > 0)
         {
             memcpy(b_ptr+((j+1)*size), b_ptr+(j*size), size); /* A[j+1] <- A[j] */
-            --j;                                            /* j <- j - 1     */
+            --j;                                              /* j <- j - 1     */
         }
 
         memcpy(b_ptr+((j+1) * size), temp, size);            /* A[j+1] = temp  */

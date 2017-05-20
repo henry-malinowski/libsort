@@ -46,9 +46,9 @@ void
 bubble_sort(void* base, size_t nmbers, size_t size,
             int (*cmp)(const void*, const void*))
 {
-    /* swap_occurred: sorting stops when this is set to zero for a whole cycle
-     * upper_bound: tracks the upper boundary
-     * i: iterates the main pointer
+    /* swap_occurred: sorting stops if this equals zero at the end of a cycle
+     *   upper_bound: tracks the upper boundary
+     *             i: iterates the main pointer
      */
     int swap_occurred = 1;
     char* upper_bound = (char*) base + (size * (nmbers));
