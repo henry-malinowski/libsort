@@ -35,7 +35,7 @@ typedef union {
 
 
 uint64_t
-array_fill_fp32(float* a, size_t size, void (*rseed)(uint64_t),
+array_fill_fp32(float* a, size_t nmemb, void (*rseed)(uint64_t),
                 float(*rand_float)(void))
 {
     /* Seed the PRNG */
@@ -43,7 +43,7 @@ array_fill_fp32(float* a, size_t size, void (*rseed)(uint64_t),
     rseed(t.d);
 
     /* Fill the array with random floats */
-    for (size_t i = 0; i < size; ++i) {
+    for (size_t i = 0; i < nmemb; ++i) {
         a[i] = rand_float();
     }
 
@@ -53,7 +53,7 @@ array_fill_fp32(float* a, size_t size, void (*rseed)(uint64_t),
 
 
 uint64_t
-array_fill_fp64(double* a, size_t size, void (*rseed)(uint64_t),
+array_fill_fp64(double* a, size_t nmemb, void (*rseed)(uint64_t),
                 double (*rand_double)(void))
 {
     /* Seed the PRNG */
@@ -61,7 +61,7 @@ array_fill_fp64(double* a, size_t size, void (*rseed)(uint64_t),
     rseed(t.d);
 
     /* Fill the array with random floats */
-    for (size_t i = 0; i < size; ++i) {
+    for (size_t i = 0; i < nmemb; ++i) {
         a[i] = rand_double();
     }
 
@@ -71,7 +71,7 @@ array_fill_fp64(double* a, size_t size, void (*rseed)(uint64_t),
 
 
 uint64_t
-array_fill_int16_t(int16_t* a, size_t nmbers, void (*rseed)(uint64_t),
+array_fill_int16_t(int16_t* a, size_t nmemb, void (*rseed)(uint64_t),
                    uint64_t (*rand_uint64_t)(void))
 {
     time_seed seed = {.time = omp_get_wtime()};
@@ -79,8 +79,8 @@ array_fill_int16_t(int16_t* a, size_t nmbers, void (*rseed)(uint64_t),
     rand_int16_t nums;
 
     size_t i = 0;
-    size_t repeat = nmbers / 4;
-    size_t remaining = nmbers % 4;
+    size_t repeat = nmemb / 4;
+    size_t remaining = nmemb % 4;
 
     while (repeat--)
     {
@@ -110,7 +110,7 @@ array_fill_int16_t(int16_t* a, size_t nmbers, void (*rseed)(uint64_t),
 
 
 uint64_t
-array_fill_int32_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
+array_fill_int32_t(int32_t* a, size_t nmemb, void (*rseed)(uint64_t),
                    uint64_t (*rand_uint64_t)(void))
 {
     time_seed seed = {.time = omp_get_wtime()};
@@ -119,8 +119,8 @@ array_fill_int32_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
     rand_int32_t nums;
 
     size_t i = 0;
-    size_t repeat = size / 2;
-    size_t remaining = size % 2;
+    size_t repeat = nmemb / 2;
+    size_t remaining = nmemb % 2;
 
     while (repeat--)
     {
@@ -143,13 +143,13 @@ array_fill_int32_t(int32_t* a, size_t size, void (*rseed)(uint64_t),
 
 
 uint64_t
-array_fill_int64_t(int64_t* a, size_t size, void (*rseed)(uint64_t),
+array_fill_int64_t(int64_t* a, size_t nmemb, void (*rseed)(uint64_t),
                    uint64_t (*rand_uint64_t)(void))
 {
     time_seed seed = {.time = omp_get_wtime()};
     rseed(seed.d);
 
-    for (size_t i = 0; i < size; ++i) {
+    for (size_t i = 0; i < nmemb; ++i) {
         a[i] = rand_uint64_t();
     }
 

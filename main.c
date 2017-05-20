@@ -38,7 +38,7 @@ int main(void) {
     int16_t array_short[16] = {0};
     const size_t len_array_short = ARRAY_SIZE(array_short);
 
-    // fill it with 16-bit numbers from Mersenne Twister
+    // fill it with shorts from Mersenne Twister
     array_fill_int16_t(array_short, len_array_short, mt_seed, mt_rand_uint64);
 
     cmp_func cmp = &cmp_less_int16;
@@ -55,9 +55,9 @@ int main(void) {
 
 
     double start = omp_get_wtime();
-    //qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    //insertion_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    bubble_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    insertion_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    //bubble_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //void* piv = partition_lomuto(array_short, len_array_short, sizeof(uint16_t), cmp);
     //quick_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
     double delta = omp_get_wtime() - start;
