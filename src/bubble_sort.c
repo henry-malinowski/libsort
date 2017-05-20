@@ -31,7 +31,7 @@
 #define SWAP(a, b, size)                \
     do                                  \
     {                                   \
-        size_t __size = (size);			\
+        size_t __size = (size);         \
         char *__a = (a), *__b = (b);    \
         do                              \
         {                               \
@@ -46,12 +46,15 @@ void
 bubble_sort(void* base, size_t nmbers, size_t size,
             int (*cmp)(const void*, const void*))
 {
-    int swap_occurred = 1;                        /* Stop the sorting when 0 */
-    void* upper_bound = base + (size * (nmbers)); /* Tracks upper boundary   */
-    void *i;                                      /* Iterator pointers       */
+    /* swap_occurred: sorting stops when this is set to zero for a whole cycle
+     * upper_bound: tracks the upper boundary
+     * i: iterates the main pointer
+     */
+    int swap_occurred = 1;
+    char* upper_bound = (char*) base + (size * (nmbers));
+    char* i;
 
-
-    while (swap_occurred != 0 && base < upper_bound)
+    while (swap_occurred != 0 && (char*) base < upper_bound)
     {
         /* If this statement is still true at the end of this loop
          * then exit the loop (the list is in order.
@@ -61,7 +64,7 @@ bubble_sort(void* base, size_t nmbers, size_t size,
         /* For each element in the array, compare and swap if the current
          * element is greater than the element above it.
          */
-        for (i = base; i < upper_bound-size; i += size)
+        for (i = (char*) base; i < upper_bound-size; i += size)
         {
             if (cmp(i+size, i) < 0)
             {
