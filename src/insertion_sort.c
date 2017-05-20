@@ -39,24 +39,25 @@ insertion_sort(void *base, size_t nmbers, size_t size,
      *  + On success: continue
      */
     register size_t i, j;
-    void *temp = malloc(size);
+    void* temp = malloc(size);
+    char* b_ptr = (char*) base;
 
     if (temp == NULL) return;
 
     /* for i = 1 to length(A) */
     for (i = 1; i < nmbers; ++i)
     {
-        memcpy(temp, base+(i*size), size);                  /* temp = A[i]    */
+        memcpy(temp, b_ptr+(i*size), size);                  /* temp = A[i]    */
         j = i - 1;                                          /* j <- i - 1     */
 
         /* while j > 0 and A[j] > A[j-1] */
-        while ((j != SIZE_MAX) && cmp( base+(j*size), temp) > 0)
+        while ((j != SIZE_MAX) && cmp( b_ptr+(j*size), temp) > 0)
         {
-            memcpy(base+((j+1)*size), base+(j*size), size); /* A[j+1] <- A[j] */
+            memcpy(b_ptr+((j+1)*size), b_ptr+(j*size), size); /* A[j+1] <- A[j] */
             --j;                                            /* j <- j - 1     */
         }
 
-        memcpy(base+((j+1) * size), temp, size);            /* A[j+1] = temp  */
+        memcpy(b_ptr+((j+1) * size), temp, size);            /* A[j+1] = temp  */
     }
 
     /* Free our memory */

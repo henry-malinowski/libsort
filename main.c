@@ -23,25 +23,18 @@ union u_seed {
 
 
 int main(void) {
-    //<editor-fold desc="Seed PRNG (Mersenne Twister)">
-    union u_seed seed;
-    seed.d = omp_get_wtime();
-    mt_seed(seed.i);
-    //mt_seed(4659345558749990174ULL);
-    printf("\nMersenne Twister seed: %zu\n\n", seed.i);
-    //</editor-fold>
-
     // Declare array of uint32_t
     uint32_t array_int[6] = {0};
     const size_t len_array_int = ARRAY_SIZE(array_int);
 
     int16_t array_short[16] = {0};
     const size_t len_array_short = ARRAY_SIZE(array_short);
+    cmp_func cmp = &cmp_less_int16;
 
     // fill it with shorts from Mersenne Twister
-    array_fill_int16_t(array_short, len_array_short, mt_seed, mt_rand_uint64);
+    uint64_t seed = array_fill_int16_t(array_short, len_array_short, mt_seed, mt_rand_uint64);
 
-    cmp_func cmp = &cmp_less_int16;
+    printf("\nMersenne Twister seed: %zu\n\n", seed);
 
     //<editor-fold desc="Display contents (array_short pre-sort)">
     if (len_array_short <= 128) {
@@ -56,7 +49,7 @@ int main(void) {
 
     double start = omp_get_wtime();
     qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
-    insertion_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    //insertion_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //bubble_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //void* piv = partition_lomuto(array_short, len_array_short, sizeof(uint16_t), cmp);
     //quick_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
