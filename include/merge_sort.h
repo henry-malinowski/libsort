@@ -1,4 +1,5 @@
 /**
+ * @file
  * A C headers file that includes the definition of a type agnostic merge sort.
  *
  * @copyright (C) 2017 Henry Malinowski <malinowski.henry@gmail.com>
@@ -24,9 +25,9 @@
 
 #include <stddef.h>
 
-#ifndef SORT_MERGE_H
-#define SORT_MERGE_H
+#ifndef SORT_MERGESORT_H
+#define SORT_MERGESORT_H
 
 void merge_sort(void* base, size_t nmemb, size_t size, int (*cmp)(const void*, const void*));
 
-#endif /* SORT_MERGE_H */
+#endif /* SORT_MERGESORT_H */
