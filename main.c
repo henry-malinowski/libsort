@@ -7,15 +7,15 @@
 
 #include "./include/issorted.h"
 #include "./include/bubble_sort.h"
+#include "./include/network_sorting.h"
 #include "./include/partition.h"
 #include "./include/quick_sort.h"
 #include "./tests/array_generators.h"
-#include "./tests/tests_partition.h"
-#include "./include/comparisons_ints.h"
 #include "./include/comparisons_floats.h"
 #include "include/insertion_sort.h"
 
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
+
 
 union u_seed {
     double d;
@@ -25,7 +25,7 @@ union u_seed {
 
 int main(void) {
     // Declare array of uint32_t
-    float array_float[19200] = {0};
+    float array_float[6] = {0};
     const size_t len_array_float = ARRAY_SIZE(array_float);
 
     cmp_func cmp = &cmp_less_fp32;
@@ -51,7 +51,8 @@ int main(void) {
     //insertion_sort(array_float, len_array_float, sizeof(float), cmp);
     //bubble_sort(array_float, len_array_float, sizeof(float), cmp);
     //void* piv = partition_lomuto(array_short, len_array_short, sizeof(uint16_t), cmp);
-    quick_sort(array_float, len_array_float, sizeof(float), cmp);
+    //quick_sort(array_float, len_array_float, sizeof(float), cmp);
+    network_sort_6_wire(array_float, len_array_float, sizeof(float), cmp);
     double delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">

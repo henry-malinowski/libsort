@@ -43,16 +43,16 @@
 
 
 void
-network_sort_4_wire(void* base, size_t nmbers, size_t size,
+network_sort_4_wire(void* base, size_t nmemb, size_t size,
                     int (*cmp)(const void*, const void*))
 {
-    if (nmbers != 4) return;
+    if (nmemb != 4) return;
 
     /* initialize pointers to the 4 wires of the network */
-    void* a = base;
-    void* b = a + size;
-    void* c = b + size;
-    void* d = c + size;
+    char* a = (char*) base;
+    char* b = a + size;
+    char* c = b + size;
+    char* d = c + size;
 
     /* Run through sorting network */
     if (cmp(a, b) > 0) SWAP(a, b, size);
@@ -63,19 +63,55 @@ network_sort_4_wire(void* base, size_t nmbers, size_t size,
 }
 
 
+void network_sort_5_wire(void* base, size_t nmemb, size_t size,
+                         int (*cmp)(const void*, const void*))
+{
+    if (nmemb != 5) return;
+
+    /* initialize pointers to the 5 wires of the network */
+    char* a = (char*) base;        /* 0 */
+    char* b = a + size;            /* 1 */
+    char* c = b + size;            /* 2 */
+    char* d = c + size;            /* 3 */
+    char* e = d + size;            /* 4 */
+
+    /* Run through sorting network */
+    /* Phase 1: [0, 1], [3, 4] */
+    if (cmp(a, b) > 0) SWAP(a, b, size);
+    if (cmp(d, e) > 0) SWAP(d, e, size);
+
+    /* Phase 2: [2, 4] */
+    if (cmp(c, e) > 0) SWAP(c, e, size);
+
+    /* Phase 3: [2, 3], [1, 4] */
+    if (cmp(c, d) > 0) SWAP(c, d, size);
+    if (cmp(b, e) > 0) SWAP(b, a, size);
+
+    /* Phase 4: [0, 3] */
+    if (cmp(a, d) > 0) SWAP(a, d, size);
+
+    /* Phase 5: [0, 2], [1, 3] */
+    if (cmp(a, c) > 0) SWAP(a, c, size);
+    if (cmp(b, d) > 0) SWAP(b, d, size);
+
+    /* Phase 6: [1, 2] */
+    if (cmp(b, c) > 0) SWAP(b, c, size);
+}
+
+
 void
-network_sort_6_wire(void* base, size_t nmbers, size_t size,
+network_sort_6_wire(void* base, size_t nmemb, size_t size,
                     int (*cmp)(const void*, const void*))
 {
-    if (nmbers != 6) return;
+    if (nmemb != 6) return;
 
     /* initialize pointers to the 8 wires of the network */
-    void* a = base;                /* 0 */
-    void* b = a + size;            /* 1 */
-    void* c = b + size;            /* 2 */
-    void* d = c + size;            /* 3 */
-    void* e = d + size;            /* 4 */
-    void* f = e + size;            /* 5 */
+    char* a = (char*) base;        /* 0 */
+    char* b = a + size;            /* 1 */
+    char* c = b + size;            /* 2 */
+    char* d = c + size;            /* 3 */
+    char* e = d + size;            /* 4 */
+    char* f = e + size;            /* 5 */
 
     /* Run through sorting network      */
     /* Phase 1: [1, 2], [4, 5]          */
@@ -105,20 +141,20 @@ network_sort_6_wire(void* base, size_t nmbers, size_t size,
 
 
 void
-network_sort_8_wire(void* base, size_t nmbers, size_t size,
+network_sort_8_wire(void* base, size_t nmemb, size_t size,
                     int (*cmp)(const void*, const void*))
 {
-    if (nmbers != 8) return;
+    if (nmemb != 8) return;
 
     /* initialize pointers to the 8 wires of the network */
-    void* a = base;
-    void* b = a + size;
-    void* c = b + size;
-    void* d = c + size;
-    void* e = d + size;
-    void* f = e + size;
-    void* g = f + size;
-    void* h = g + size;
+    char* a = base;
+    char* b = a + size;
+    char* c = b + size;
+    char* d = c + size;
+    char* e = d + size;
+    char* f = e + size;
+    char* g = f + size;
+    char* h = g + size;
 
     /* Run through sorting network */
     if (cmp(a, e) > 0) SWAP(a, e, size);
@@ -140,11 +176,4 @@ network_sort_8_wire(void* base, size_t nmbers, size_t size,
     if (cmp(d, g) > 0) SWAP(d, g, size);
     if (cmp(d, e) > 0) SWAP(d, e, size);
     if (cmp(f, g) > 0) SWAP(f, g, size);
-}
-
-
-void
-network_sort_18_wire(void* base, size_t nmbers, size_t size,
-                    int (*cmp)(const void*, const void*)) {
-    if (nmbers != 18) return;
 }

@@ -31,7 +31,7 @@
 /**
  * Utilizes a 4-wire sorting network to sort an array.
  * @param base   [in,out] A pointer to the beginning of the array.
- * @param nmbers [in]     The number of items in the array.
+ * @param nmemb [in]     The number of items in the array.
  * @param size   [in]     The size of the individual elements of the array.
  * @param cmp    [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
@@ -45,13 +45,37 @@
  * Sorting network | Wikipedia</a>
  * @copyright MIT License.
  */
-void network_sort_4_wire(void* base, size_t nmbers, size_t size, int (*cmp)(const void*, const void*));
+void network_sort_4_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const void*, const void*));
+
+
+/**
+ * Utilizes a 5-wire sorting network to sort an array.
+ * @details This network completes sorting in 9 comparisons and at most 9 swaps.
+ *  This 5 wire sorting network was generated using the Bose-Nelson Algorithm.
+ * @param base   [in,out] A pointer to the beginning of the array.
+ * @param nmemb [in]     The number of items in the array.
+ * @param size   [in]     The size of the individual elements of the array.
+ * @param cmp    [in]     A comparator function for the sort. This function must
+ *  return a negative integer if two elements should be swapped.
+ * @note If the \p nmbers does not equal 4, the array may (or may not) be sorted.
+ *
+ * <b>Example usage:</b>
+ * @code{.c}
+ *  network_sort_5_wire(array, 4, sizeof(array[0]), cmp_func);
+ * @endcode
+ * @see <a href="https://en.wikipedia.org/wiki/Sorting_network">
+ * Sorting network | Wikipedia</a>
+ * @see <a href="http://jgamble.ripco.net/cgi-bin/nw.cgi?inputs=5&algorithm=best&output=text">
+ * Network for N=5, using Bose-Nelson Algorithm</a>
+ * @copyright MIT License.
+ */
+void network_sort_5_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const void*, const void*));
 
 
 /**
  * Utilizes a 6-wire sorting network to sort an array.
  * @param base   [in,out] A pointer to the beginning of the array.
- * @param nmbers [in]     The number of items in the array.
+ * @param nmemb [in]     The number of items in the array.
  * @param size   [in]     The size of the individual elements of the array.
  * @param cmp    [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
@@ -68,13 +92,13 @@ void network_sort_4_wire(void* base, size_t nmbers, size_t size, int (*cmp)(cons
  * Network for N=6, using Bose-Nelson Algorithm</a>
  * @copyright MIT License.
  */
-void network_sort_6_wire(void* base, size_t nmbers, size_t size, int (*cmp)(const void*, const void*));
+void network_sort_6_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const void*, const void*));
 
 
 /**
  * Utilizes a 8-wire sorting network to sort an array.
  * @param base   [in,out] A pointer to the beginning of the array.
- * @param nmbers [in]     The number of items in the array.
+ * @param nmemb [in]     The number of items in the array.
  * @param size   [in]     The size of the individual elements of the array.
  * @param cmp    [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
@@ -88,28 +112,7 @@ void network_sort_6_wire(void* base, size_t nmbers, size_t size, int (*cmp)(cons
  * Sorting network | Wikipedia</a>
  * @copyright MIT License.
  */
-void network_sort_8_wire(void* base, size_t nmbers, size_t size, int (*cmp)(const void*, const void*));
+void network_sort_8_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const void*, const void*));
 
-
-/**
- * Utilizes a 18-wire sorting network to sort an array.
- * @param base   [in,out] A pointer to the beginning of the array.
- * @param nmbers [in]     The number of items in the array.
- * @param size   [in]     The size of the individual elements of the array.
- * @param cmp    [in]     A comparator function for the sort. This function must
- *  return a negative integer if two elements should be swapped.
- * @note If the \p nmbers does not equal 18, the array may (or may not) be sorted.
- *
- * <b>Example usage:</b>
- * @code{.c}
- *  network_sort_18_wire(array, 18, sizeof(array[0]), cmp_func);
- * @endcode
- * @see <a href="https://en.wikipedia.org/wiki/Sorting_network">
- * Sorting network | Wikipedia</a>
- * @see <a href="https://www.kent.edu/sites/default/files/TR-KSU-CS-2007-06.pdf">
- *  An 11-Step Sorting Network for 18 Elements, Kent.edu</a>
- * @copyright MIT License.
- */
-void network_sort_18_wire(void* base, size_t nmbers, size_t size, int (*cmp)(const void*, const void*));
 
 #endif /* SORT_NETWORK_H */
