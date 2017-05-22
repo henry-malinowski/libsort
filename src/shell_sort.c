@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-#include "shell_sort.h"
+#include "../include/shell_sort.h"
 
 static const unsigned
         gap_sequence_ciura[] = {1750, 701, 301, 132, 132, 57, 32, 10, 4, 1};
