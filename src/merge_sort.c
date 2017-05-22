@@ -1,5 +1,5 @@
-#include "../include/merge.h"
 #include "../include/merge_sort.h"
+#include "../include/merge.h"
 
 void
 merge_sort(void* base, size_t nmemb, size_t size,
