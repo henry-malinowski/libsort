@@ -132,9 +132,9 @@ partition_hoare(void *base, size_t nmbers, size_t size,
     char* pivot = malloc(size);
 
     assert(pivot != NULL);
-    //COPY(pivot, base, size);
+    COPY(pivot, base, size);
 
-    memcpy(pivot, base, size);
+    //memcpy(pivot, base, size);
 
     /* Perform Hoare's partitioning until pointers i and j meet. */
     while (1) {

@@ -25,14 +25,15 @@ union u_seed {
 
 int main(void) {
     // Declare array of uint32_t
-    float array_float[64] = {0};
+    float array_float[19200] = {0};
     const size_t len_array_float = ARRAY_SIZE(array_float);
 
     cmp_func cmp = &cmp_less_fp32;
 
     // fill it with shorts from Mersenne Twister
     uint64_t seed = array_fill_fp32(array_float, len_array_float, mt_seed, rand_float);
-    printf("\nMersenne Twister seed: %zu\n\n", seed);
+    printf("\nMersenne Twister seed: %zu\n", seed);
+    printf("Generated %zu floats\n\n", len_array_float);
 
     //<editor-fold desc="Display contents (array_float pre-sort)">
     if (len_array_float <= 128) {
@@ -48,9 +49,9 @@ int main(void) {
     double start = omp_get_wtime();
     //qsort(array_short, len_array_short, sizeof(uint16_t), cmp);
     //insertion_sort(array_float, len_array_float, sizeof(float), cmp);
-    bubble_sort(array_float, len_array_float, sizeof(float), cmp);
+    //bubble_sort(array_float, len_array_float, sizeof(float), cmp);
     //void* piv = partition_lomuto(array_short, len_array_short, sizeof(uint16_t), cmp);
-    //quick_sort(array_short, len_array_short, sizeof(uint16_t), cmp);
+    quick_sort(array_float, len_array_float, sizeof(float), cmp);
     double delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">

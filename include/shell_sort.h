@@ -32,7 +32,7 @@
  * @brief Performs shell sort on an arbitrarily typed array.
  * @details The gap sequence for this function is statically stored in
  *  ../src/shell_sort.c. Currently it is using the Ciura's sequence.
- *  This is mathematically extended from existing element by applying the
+ *  This can ne mathematically extended from existing elements by applying the
  *  recursive formula, \f$ h_k = \lfloor 2.25 h_{k-1} \rfloor \f$.
  *
  * @param base  [in,out] A pointer to the beginning of the array.
