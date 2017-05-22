@@ -55,10 +55,15 @@ network_sort_4_wire(void* base, size_t nmemb, size_t size,
     char* d = c + size;
 
     /* Run through sorting network */
+    /* Phase 1: [0, 1], [2, 3] */
     if (cmp(a, b) > 0) SWAP(a, b, size);
     if (cmp(c, d) > 0) SWAP(c, d, size);
+
+    /* Phase 2: [0, 2], [1, 3] */
     if (cmp(a, c) > 0) SWAP(a, c, size);
     if (cmp(b, d) > 0) SWAP(b, d, size);
+
+    /* Phase 3: [1, 2] */
     if (cmp(b, c) > 0) SWAP(b, c, size);
 }
 

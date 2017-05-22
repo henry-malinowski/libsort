@@ -30,10 +30,10 @@
 
 /**
  * Utilizes a 4-wire sorting network to sort an array.
- * @param base   [in,out] A pointer to the beginning of the array.
+ * @param base  [in,out] A pointer to the beginning of the array.
  * @param nmemb [in]     The number of items in the array.
- * @param size   [in]     The size of the individual elements of the array.
- * @param cmp    [in]     A comparator function for the sort. This function must
+ * @param size  [in]     The size of the individual elements of the array.
+ * @param cmp   [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
  * @note If the \p nmbers does not equal 4, the array may (or may not) be sorted.
  *
@@ -52,10 +52,10 @@ void network_sort_4_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const
  * Utilizes a 5-wire sorting network to sort an array.
  * @details This network completes sorting in 9 comparisons and at most 9 swaps.
  *  This 5 wire sorting network was generated using the Bose-Nelson Algorithm.
- * @param base   [in,out] A pointer to the beginning of the array.
+ * @param base  [in,out] A pointer to the beginning of the array.
  * @param nmemb [in]     The number of items in the array.
- * @param size   [in]     The size of the individual elements of the array.
- * @param cmp    [in]     A comparator function for the sort. This function must
+ * @param size  [in]     The size of the individual elements of the array.
+ * @param cmp   [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
  * @note If the \p nmbers does not equal 4, the array may (or may not) be sorted.
  *
@@ -74,10 +74,10 @@ void network_sort_5_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const
 
 /**
  * Utilizes a 6-wire sorting network to sort an array.
- * @param base   [in,out] A pointer to the beginning of the array.
+ * @param base  [in,out] A pointer to the beginning of the array.
  * @param nmemb [in]     The number of items in the array.
- * @param size   [in]     The size of the individual elements of the array.
- * @param cmp    [in]     A comparator function for the sort. This function must
+ * @param size  [in]     The size of the individual elements of the array.
+ * @param cmp   [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
  * @note If the \p nmbers does not equal 6, the array may (or may not) be sorted.
  *
@@ -93,6 +93,29 @@ void network_sort_5_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const
  * @copyright MIT License.
  */
 void network_sort_6_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const void*, const void*));
+
+
+/**
+ * Utilizes a 7-wire sorting network to sort an array.
+ * @param base  [in,out] A pointer to the beginning of the array.
+ * @param nmemb [in]     The number of items in the array.
+ * @param size  [in]     The size of the individual elements of the array.
+ * @param cmp   [in]     A comparator function for the sort. This function must
+ *  return a negative integer if two elements should be swapped.
+ * @note If the \p nmbers does not equal 6, the array may (or may not) be sorted.
+ *
+ * <b>Example usage:</b>
+ * @code{.c}
+ *  network_sort_7_wire(array, 6, sizeof(array[0]), cmp_func);
+ * @endcode
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/Sorting_network">
+ * Sorting network | Wikipedia</a>
+ * @see <a href="http://jgamble.ripco.net/cgi-bin/nw.cgi?inputs=6&algorithm=best&output=text">
+ * Network for N=7, using Bose-Nelson Algorithm</a>
+ * @copyright MIT License.
+ */
+void network_sort_7_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const void*, const void*));
 
 
 /**
