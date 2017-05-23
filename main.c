@@ -28,7 +28,9 @@ int main(void) {
     float array_float[6] = {0};
     const size_t len_array_float = ARRAY_SIZE(array_float);
 
-    cmp_func cmp = &cmp_less_fp32;
+    __compar_fn_t cmp = &cmp_less_fp32;
+
+    printf("sizeof (long double) -> %zu\n", sizeof(long double));
 
     // fill it with shorts from Mersenne Twister
     uint64_t seed = array_fill_fp32(array_float, len_array_float, mt_seed, rand_float);

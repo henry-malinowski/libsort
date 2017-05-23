@@ -42,7 +42,7 @@ partition_lomuto_tests(void)
 
     bool malloc_failed = false;
     void* array = NULL;
-    cmp_func less_than = NULL; // This is set at the same time the element size is picked
+    __compar_fn_t less_than = NULL; // This is set at the same time the element size is picked
 
     ARRAY_TYPE array_type;
 

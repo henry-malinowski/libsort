@@ -11,7 +11,9 @@ cmp_less_fp32(const void* p, const void* q)
     return 0;
 }
 
-int cmp_less_fp64(const void* p, const void* q)
+
+int
+cmp_less_fp64(const void* p, const void* q)
 {
     const double a = *(const double *) p;
     const double b = *(const double *) q;
@@ -21,3 +23,14 @@ int cmp_less_fp64(const void* p, const void* q)
     return 0;
 }
 
+
+int
+cmp_less_fp128(const void *p, const void *q)
+{
+    const long double a = *(const long double *) p;
+    const long double b = *(const long double *) q;
+
+    if (a > b) return +1;
+    if (b > a) return -1;
+    return 0;
+}
