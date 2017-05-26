@@ -55,7 +55,7 @@ shuffle(void* base, size_t nmbers, size_t size, size_t (*r_func)(void))
 
         SWAP(rand_ptr, right_ptr, size);
 
-        // decrements the right pointer and number of members
+        /* decrements the right pointer and number of members */
         right_ptr -= size;
         --nmbers;
     }

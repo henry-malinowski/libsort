@@ -19,7 +19,6 @@ static int mti=NN+1;
 void
 mt_seed(uint64_t seed) {
     mt[0] = seed;
-    //memset(mt, 0, NN); //this is unnessisary
     for (mti=1; mti<NN; mti++)
     {
         mt[mti] = (6364136223846793005ULL * (mt[mti-1] ^ (mt[mti-1] >> 62)) + mti);

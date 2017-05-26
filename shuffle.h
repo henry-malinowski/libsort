@@ -45,4 +45,4 @@
 void shuffle(void *base, size_t nmbers, size_t size, size_t (*r_func)(void));
 
 
-#endif //SHUFFLE_H
+#endif /* SHUFFLE_H */

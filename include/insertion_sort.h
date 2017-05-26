@@ -47,4 +47,4 @@
  */
 void insertion_sort(void *base, size_t nmbers, size_t size, int (*cmp)(const void*, const void*));
 
-#endif //SORT_INSERTION_H
+#endif /* SORT_INSERTION_H */

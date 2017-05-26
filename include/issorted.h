@@ -53,4 +53,4 @@
  */
 int issorted(const void *base, size_t nmbers, size_t size, int (*cmp)(const void*, const void*));
 
-#endif //SORT_IS_SORTED_H
+#endif /* SORT_IS_SORTED_H */

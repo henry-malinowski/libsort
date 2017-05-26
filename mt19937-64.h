@@ -106,4 +106,4 @@ double mt_rand_double_2(void);
  */
 double mt_rand_double_3(void);
 
-#endif //SHUFFLE_LIB_MT19937_64_H
+#endif /* SHUFFLE_LIB_MT19937_64_H */

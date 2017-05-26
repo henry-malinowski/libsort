@@ -12,6 +12,19 @@
 typedef int (*__compar_fn_t) (const void *, const void *);
 #endif /* __compar_fn_t_defined */
 
+/* implementation defined comparators */
+int cmp_less_uchar(const void* p, const void* q);
+int cmp_less_ushort(const void* p, const void* q);
+int cmp_less_uint(const void* p, const void* q);
+int cmp_less_ul(const void* p, const void* q);
+int cmp_less_size_t(const void* p, const void* q);
+
+#if __STDC_VERSION__ >= 199901L /* check if we're compiling in +C99 mode */
+int cmp_less_ull(const void* p, const void* q);
+#endif /* __STDC_VERSION__ >= 199901L */
+/* fixed length comparators */
+
+
 int cmp_less_int16(const void* p, const void* q);
 int cmp_less_int32(const void* p, const void* q);
 int cmp_less_int64(const void* p, const void* q);
