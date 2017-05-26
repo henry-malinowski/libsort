@@ -57,7 +57,7 @@ void network_sort_4_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const
  * @param size  [in]     The size of the individual elements of the array.
  * @param cmp   [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
- * @note If the \p nmbers does not equal 4, the array may (or may not) be sorted.
+ * @note If the \p nmbers does not equal 5, the array may (or may not) be sorted.
  *
  * <b>Example usage:</b>
  * @code{.c}
@@ -102,7 +102,7 @@ void network_sort_6_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const
  * @param size  [in]     The size of the individual elements of the array.
  * @param cmp   [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
- * @note If the \p nmbers does not equal 6, the array may (or may not) be sorted.
+ * @note If the \p nmbers does not equal 7, the array may (or may not) be sorted.
  *
  * <b>Example usage:</b>
  * @code{.c}
@@ -120,10 +120,10 @@ void network_sort_7_wire(void* base, size_t nmemb, size_t size, int (*cmp)(const
 
 /**
  * Utilizes a 8-wire sorting network to sort an array.
- * @param base   [in,out] A pointer to the beginning of the array.
+ * @param base  [in,out] A pointer to the beginning of the array.
  * @param nmemb [in]     The number of items in the array.
- * @param size   [in]     The size of the individual elements of the array.
- * @param cmp    [in]     A comparator function for the sort. This function must
+ * @param size  [in]     The size of the individual elements of the array.
+ * @param cmp   [in]     A comparator function for the sort. This function must
  *  return a negative integer if two elements should be swapped.
  * @note If the \p nmbers does not equal 8, the array may (or may not) be sorted.
  *

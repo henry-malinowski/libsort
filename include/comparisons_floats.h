@@ -1,3 +1,10 @@
+/*
+ * While their may be opportunities for optimizing the cmp functions, analysis
+ * of the assembly output of three different compilers (GCC, Clang, ARM64 GCC)
+ * with -O2 optimizations enabled produced almost identical code to supposedly
+ * more optimal variations.
+ */
+
 #ifndef COMPARISONS_FLOATS_H
 #define COMPARISONS_FLOATS_H
 

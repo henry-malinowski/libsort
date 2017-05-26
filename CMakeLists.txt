@@ -3,7 +3,7 @@ project(C_Sorting_Lib)
 
 set(CMAKE_C_STANDARD 99)
 
-set(CMAKE_C_FLAGS "-fopenmp")
+set(CMAKE_C_FLAGS "-fopenmp -lgmp")
 
 set(GCC_COVERAGE_COMPILE_FLAGS "-std=c99" "-Wall" "-Wno-unused-variable" "-pedantic" "-g" "-O0" "-march=haswell" "-fsanitize=leak" "-fstrict-overflow")
 add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
