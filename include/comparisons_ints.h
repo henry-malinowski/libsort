@@ -5,6 +5,9 @@
 #define __compar_fn_t_defined
 /**
  * @brief Typedef for a comparator function.
+ * @details This definition is intended to give the file including this header a
+ *  type for specifying a comparison function if they have not included the
+ *  nearly identical typedef from stdlib.h .
  */
 typedef int (*__compar_fn_t) (const void *, const void *);
 #endif /* __compar_fn_t_defined */
