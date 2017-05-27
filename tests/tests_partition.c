@@ -12,6 +12,7 @@
 #include "../include/partition.h"
 #include "../include/comparisons_floats.h"
 #include "../include/comparisons_ints.h"
+#include "../include/comparisons_stdint.h"
 
 typedef enum {
     INT_16 = 0,

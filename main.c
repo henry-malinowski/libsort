@@ -14,6 +14,8 @@
 #include "./include/comparisons_floats.h"
 #include "include/insertion_sort.h"
 
+#include <gmp.h>
+
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
 
 union u_seed {
@@ -42,6 +44,7 @@ int main(void) {
         }
         printf("\n");
     }
+
     printf("\n");
     //</editor-fold>
 

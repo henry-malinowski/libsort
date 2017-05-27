@@ -24,6 +24,9 @@ This would follow the prototype that the C standard outlines for `qsort`.
 * [Radix Sort (MSD)](https://en.wikipedia.org/wiki/Radix_sort#Most_significant_digit_radix_sorts)
 * [Bucket Sort](https://en.wikipedia.org/wiki/Bucket_sort)
 
+Behavior for sorting non-integer types would be undefined, but the functions
+ would support sorting of any integer type.
+
 ### Assisting functions
 * Quick verify sort
 * [Through verify sort](https://4z2.de/2016/02/07/verifying-sorting-algorithms)
@@ -32,10 +35,6 @@ This would follow the prototype that the C standard outlines for `qsort`.
 * Verify partition
 * [Array merge](https://en.wikipedia.org/wiki/Merge_algorithm#Merging_two_lists)
 * In-place array merge
-
-Behavior for sorting non-integer types would be undefined, but the functions
- would support sorting of any integer type.
-
 
 This library will also have will also come with some testing functions to debug 
 and verify the result of the sorting and partitioning functions. To achieve this
