@@ -32,8 +32,8 @@ issorted(const void *base, size_t nmbers, size_t size,
      *   is not needed to calculate the memory addresses.
      */
     register size_t i;
-    register const void* a = base;
-    register const void* b = base + size;
+    register const char* a = (char*) base;
+    register const char* b = (char*) base + size;
 
     // loop over array
     for (i = 1; i < nmbers && (cmp(a, b) <= 0); ++i)
