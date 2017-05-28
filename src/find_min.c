@@ -30,20 +30,19 @@ const void*
 find_min(const void *base, size_t nmbers, size_t size,
                 int (*cmp)(const void *, const void *))
 {
-    register const void* min = base;
-    register const void* end = base + (nmbers*size);
+    register const char* min = (char*) base;
+    register const char* end = (char*) base + (nmbers*size);
+    register const char* i = min + size;
 
-    base = min + size;
-
-    /* while the lower array pointer is less than the upper array pointer */
-    while (base < end)
+    /* while the i array pointer is less than the end array pointer */
+    while (i < end)
     {   /* check is min < A[i] */
-        if (cmp(min, base) > 0)
+        if (cmp(min, i) > 0)
         {
-            min = base;
+            min = i;
         }
 
-        base += size;
+        i += size;
     }
 
     return min;
