@@ -52,8 +52,8 @@ selection_sort(void* base, size_t nmbers, size_t size,
      *  + j: tracks the inner loop for finding the min
      *  + min_ptr: the current minimum candidate
      */
-    const void* upper_limit = base + (nmbers*size);
-    void *i, *min_ptr, *j;
+    const char* upper_limit = (char*) base + (nmbers*size);
+    char *i, *min_ptr, *j;
 
     for (i = base; i < (upper_limit - size); i += size)
     {
