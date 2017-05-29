@@ -14,19 +14,19 @@ typedef int (*__compar_fn_t) (const void *, const void *);
 
 
 /* Signed less-than comparators */
-int cmp_lt_char(const void *p, const void *q);
-int cmp_lt_short(const void *p, const void *q);
-int cmp_lt_int(const void *p, const void *q);
-int cmp_lt_long(const void *p, const void *q);
-int cmp_lt_ssize_t(const void *p, const void *q);
+int cmp_lt_char(const void* p, const void* q);
+int cmp_lt_short(const void* p, const void* q);
+int cmp_lt_int(const void* p, const void* q);
+int cmp_lt_long(const void* p, const void* q);
+int cmp_lt_ssize_t(const void* p, const void* q);
 
 
 /* Unsigned less-then comparators */
-int cmp_lt_uchar(const void *p, const void *q);
-int cmp_lt_ushort(const void *p, const void *q);
-int cmp_lt_uint(const void *p, const void *q);
-int cmp_lt_ulong(const void *p, const void *q);
-int cmp_lt_size_t(const void *p, const void *q);
+int cmp_lt_uchar(const void* p, const void* q);
+int cmp_lt_ushort(const void* p, const void* q);
+int cmp_lt_uint(const void* p, const void* q);
+int cmp_lt_ulong(const void* p, const void* q);
+int cmp_lt_size_t(const void* p, const void* q);
 
 
 /* Signed greater-than comparators */
@@ -38,11 +38,11 @@ int cmp_gt_ssize_t(const void* p, const void* q);
 
 
 /* Unsigned greater-then comparators */
-int cmp_gt_uchar(const void *p, const void *q);
-int cmp_gt_ushort(const void *p, const void *q);
-int cmp_gt_uint(const void *p, const void *q);
-int cmp_gt_ulong(const void *p, const void *q);
-int cmp_gt_size_t(const void *p, const void *q);
+int cmp_gt_uchar(const void* p, const void* q);
+int cmp_gt_ushort(const void* p, const void* q);
+int cmp_gt_uint(const void* p, const void* q);
+int cmp_gt_ulong(const void* p, const void* q);
+int cmp_gt_size_t(const void* p, const void* q);
 
 
 /* Comparisons for signed and unsigned long-long integer types.
@@ -50,10 +50,10 @@ int cmp_gt_size_t(const void *p, const void *q);
  *  not compile these is on an earlier version of C: C89, C90, C95.
  */
 #if __STDC_VERSION__ >= 199901L
-int cmp_lt_ll(const void *p, const void *q);
-int cmp_gt_ll(const void *p, const void *q);
-int cmp_lt_ull(const void *p, const void *q);
-int cmp_gt_ull(const void *p, const void *q);
+int cmp_lt_ll(const void* p, const void* q);
+int cmp_gt_ll(const void* p, const void* q);
+int cmp_lt_ull(const void* p, const void* q);
+int cmp_gt_ull(const void* p, const void* q);
 #endif /* __STDC_VERSION__ >= 199901L */
 
 #endif /* COMPARISONS_INTS_H */
