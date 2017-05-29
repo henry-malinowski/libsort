@@ -32,18 +32,6 @@ int main(void) {
 
     __compar_fn_t cmp = &cmp_less_fp32;
 
-
-    void *a = &array_float[10], *b = &array_float[10];
-
-    if (a < b) {
-        printf("a is less than b\n");
-    } else if (b < a) {
-        printf("b is less than a\n");
-    } else {
-        printf("a equals b\n");
-    }
-
-
     // fill it with shorts from Mersenne Twister
     uint64_t seed = array_fill_fp32(array_float, len_array_float, mt_seed, rand_float);
     printf("Mersenne Twister seed: %zu\n", seed);
@@ -65,8 +53,8 @@ int main(void) {
     //qsort(array_float, len_array_float, sizeof(float), cmp);
     //insertion_sort(array_float, len_array_float, sizeof(float), cmp);
     //selection_sort(array_float, len_array_float, sizeof(float), cmp);
-    bubble_sort(array_float, len_array_float, sizeof(float), cmp);
-    //quick_sort(array_float, len_array_float, sizeof(float), cmp);
+    //bubble_sort(array_float, len_array_float, sizeof(float), cmp);
+    quick_sort(array_float, len_array_float, sizeof(float), cmp);
     double delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
