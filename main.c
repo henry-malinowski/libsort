@@ -13,6 +13,7 @@
 #include "./tests/array_generators.h"
 #include "./include/comparisons_floats.h"
 #include "include/insertion_sort.h"
+#include "include/bubble_sort.h"
 
 #include <gmp.h>
 
@@ -26,10 +27,22 @@ union u_seed {
 
 int main(void) {
     // Declare array of uint32_t
-    float array_float[12] = {0};
+    float array_float[32] = {0};
     const size_t len_array_float = ARRAY_SIZE(array_float);
 
     __compar_fn_t cmp = &cmp_less_fp32;
+
+
+    void *a = &array_float[10], *b = &array_float[10];
+
+    if (a < b) {
+        printf("a is less than b\n");
+    } else if (b < a) {
+        printf("b is less than a\n");
+    } else {
+        printf("a equals b\n");
+    }
+
 
     // fill it with shorts from Mersenne Twister
     uint64_t seed = array_fill_fp32(array_float, len_array_float, mt_seed, rand_float);
@@ -51,11 +64,9 @@ int main(void) {
     double start = omp_get_wtime();
     //qsort(array_float, len_array_float, sizeof(float), cmp);
     //insertion_sort(array_float, len_array_float, sizeof(float), cmp);
-    selection_sort(array_float, len_array_float, sizeof(float), cmp);
-    //bubble_sort(array_float, len_array_float, sizeof(float), cmp);
-    //void* piv = partition_lomuto(array_float, len_array_float, sizeof(float), cmp);
+    //selection_sort(array_float, len_array_float, sizeof(float), cmp);
+    bubble_sort(array_float, len_array_float, sizeof(float), cmp);
     //quick_sort(array_float, len_array_float, sizeof(float), cmp);
-    //network_sort_6_wire(array_float, len_array_float, sizeof(float), cmp);
     double delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
