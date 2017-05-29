@@ -50,11 +50,11 @@ int main(void) {
     //</editor-fold>
 
     double start = omp_get_wtime();
-    qsort(array_float, len_array_float, sizeof(float), cmp);
+    //qsort(array_float, len_array_float, sizeof(float), cmp);
     //insertion_sort(array_float, len_array_float, sizeof(float), cmp);
     //selection_sort(array_float, len_array_float, sizeof(float), cmp);
     //bubble_sort(array_float, len_array_float, sizeof(float), cmp);
-    //quick_sort(array_float, len_array_float, sizeof(float), cmp);
+    quick_sort(array_float, len_array_float, sizeof(float), cmp);
     double delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
