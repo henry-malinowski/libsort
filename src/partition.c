@@ -25,7 +25,7 @@
 
 #include <malloc.h>
 #include <assert.h>
-#include <memory.h>
+#include <string.h>
 #include "../include/partition.h"
 
 /**
@@ -47,6 +47,7 @@
 
 
 /**
+ *
  * @brief Copies (size) bytes from pointer b to pointer a.
  */
 #define COPY(a, b, size)                \

@@ -19,7 +19,7 @@
 
 
 int
-cmp_less_uchar(const void* p, const void* q)
+cmp_lt_uchar(const void *p, const void *q)
 {
     const unsigned char a = *(const unsigned char*) p;
     const unsigned char b = *(const unsigned char*) q;
@@ -28,7 +28,7 @@ cmp_less_uchar(const void* p, const void* q)
 
 
 int
-cmp_less_ushort(const void* p, const void* q)
+cmp_lt_ushort(const void *p, const void *q)
 {
     const unsigned short a = *(const unsigned short*) p;
     const unsigned short b = *(const unsigned short*) q;
@@ -37,7 +37,7 @@ cmp_less_ushort(const void* p, const void* q)
 
 
 int
-cmp_less_uint(const void* p, const void* q)
+cmp_lt_uint(const void *p, const void *q)
 {
     const unsigned int a = *(const unsigned int*) p;
     const unsigned int b = *(const unsigned int*) q;
@@ -46,7 +46,7 @@ cmp_less_uint(const void* p, const void* q)
 
 
 int
-cmp_less_ul(const void* p, const void* q)
+cmp_lt_ulong(const void *p, const void *q)
 {
     const unsigned long a = *(const unsigned long*) p;
     const unsigned long b = *(const unsigned long*) q;
@@ -55,7 +55,7 @@ cmp_less_ul(const void* p, const void* q)
 
 
 int
-cmp_less_size_t(const void* p, const void* q)
+cmp_lt_size_t(const void *p, const void *q)
 {
     const size_t a = *(const size_t*) p;
     const size_t b = *(const size_t*) q;
@@ -68,16 +68,7 @@ cmp_less_size_t(const void* p, const void* q)
  */
 #if __STDC_VERSION__ >= 199901L  /* check if we're compiling in +C99 mode */
 int
-cmp_less_ull(const void* p, const void* q)
-{
-    const unsigned long long a = *(const unsigned long long*) p;
-    const unsigned long long b = *(const unsigned long long*) q;
-    CMP_RETURN_LESS(a, b);
-}
-
-
-int
-cmp_less_ll(const void* p, const void* q)
+cmp_lt_ll(const void *p, const void *q)
 {
     const long long a = *(const long long*) p;
     const long long b = *(const long long*) q;
@@ -86,19 +77,28 @@ cmp_less_ll(const void* p, const void* q)
 
 
 int
-cmp_great_ull(const void* p, const void* q)
+cmp_gt_ll(const void *p, const void *q)
 {
-    const unsigned long long a = *(const unsigned long long*) p;
-    const unsigned long long b = *(const unsigned long long*) q;
+    const long long a = *(const long long*) p;
+    const long long b = *(const long long*) q;
     CMP_RETURN_GREAT(a, b);
 }
 
 
 int
-cmp_great_ll(const void* p, const void* q)
+cmp_lt_ull(const void *p, const void *q)
 {
-    const long long a = *(const long long*) p;
-    const long long b = *(const long long*) q;
+    const unsigned long long a = *(const unsigned long long*) p;
+    const unsigned long long b = *(const unsigned long long*) q;
+    CMP_RETURN_LESS(a, b);
+}
+
+
+int
+cmp_gt_ull(const void *p, const void *q)
+{
+    const unsigned long long a = *(const unsigned long long*) p;
+    const unsigned long long b = *(const unsigned long long*) q;
     CMP_RETURN_GREAT(a, b);
 }
 #endif /* __STDC_VERSION__ >= 199901L */
