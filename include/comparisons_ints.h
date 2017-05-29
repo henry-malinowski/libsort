@@ -1,6 +1,8 @@
 #ifndef COMPARISONS_INTS_H
 #define COMPARISONS_INTS_H
 
+#include <stddef.h>
+
 #ifndef __compar_fn_t_defined
 #define __compar_fn_t_defined
 /**
@@ -18,7 +20,6 @@ int cmp_lt_char(const void* p, const void* q);
 int cmp_lt_short(const void* p, const void* q);
 int cmp_lt_int(const void* p, const void* q);
 int cmp_lt_long(const void* p, const void* q);
-int cmp_lt_ssize_t(const void* p, const void* q);
 
 
 /* Unsigned less-then comparators */
@@ -42,7 +43,6 @@ int cmp_gt_uchar(const void* p, const void* q);
 int cmp_gt_ushort(const void* p, const void* q);
 int cmp_gt_uint(const void* p, const void* q);
 int cmp_gt_ulong(const void* p, const void* q);
-int cmp_gt_size_t(const void* p, const void* q);
 
 
 /* Comparisons for signed and unsigned long-long integer types.
