@@ -27,7 +27,7 @@ union u_seed {
 
 int main(void) {
     // Declare array of uint32_t
-    float array_float[4098] = {0};
+    float array_float[15983] = {0};
     const size_t len_array_float = ARRAY_SIZE(array_float);
 
     __compar_fn_t cmp = &cmp_less_fp32;
@@ -50,11 +50,11 @@ int main(void) {
     //</editor-fold>
 
     double start = omp_get_wtime();
-    //qsort(array_float, len_array_float, sizeof(float), cmp);
+    qsort(array_float, len_array_float, sizeof(float), cmp);
     //insertion_sort(array_float, len_array_float, sizeof(float), cmp);
     //selection_sort(array_float, len_array_float, sizeof(float), cmp);
     //bubble_sort(array_float, len_array_float, sizeof(float), cmp);
-    quick_sort(array_float, len_array_float, sizeof(float), cmp);
+    //quick_sort(array_float, len_array_float, sizeof(float), cmp);
     double delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">

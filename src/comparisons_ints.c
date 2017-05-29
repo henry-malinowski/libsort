@@ -28,6 +28,14 @@ cmp_lt_uchar(const void *p, const void *q)
 
 
 int
+cmp_lt_wchar(const void* p, const void* q) {
+    const wchar_t a = *(const wchar_t*) p;
+    const wchar_t b = *(const wchar_t*) q;
+    CMP_RETURN_LESS(a, b);
+}
+
+
+int
 cmp_lt_ushort(const void *p, const void *q)
 {
     const unsigned short a = *(const unsigned short*) p;

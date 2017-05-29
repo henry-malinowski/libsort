@@ -24,6 +24,7 @@ int cmp_lt_long(const void* p, const void* q);
 
 /* Unsigned less-then comparators */
 int cmp_lt_uchar(const void* p, const void* q);
+int cmp_lt_wchar(const void* p, const void* q);
 int cmp_lt_ushort(const void* p, const void* q);
 int cmp_lt_uint(const void* p, const void* q);
 int cmp_lt_ulong(const void* p, const void* q);
@@ -40,14 +41,15 @@ int cmp_gt_ssize_t(const void* p, const void* q);
 
 /* Unsigned greater-then comparators */
 int cmp_gt_uchar(const void* p, const void* q);
+int cmp_gt_wchar(const void* p, const void* q);
 int cmp_gt_ushort(const void* p, const void* q);
 int cmp_gt_uint(const void* p, const void* q);
 int cmp_gt_ulong(const void* p, const void* q);
-
+int cmp_gt_size_t(const void* p, const void* q);
 
 /* Comparisons for signed and unsigned long-long integer types.
- * These weren't introduced until the C99 standard, so a check has been included
- *  not compile these is on an earlier version of C: C89, C90, C95.
+ *  These weren't introduced until the C99 standard, so a check has been
+ *  included not to compile these on an earlier version of C: C89, C90, C95.
  */
 #if __STDC_VERSION__ >= 199901L
 int cmp_lt_ll(const void* p, const void* q);
