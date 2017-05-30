@@ -25,8 +25,8 @@ int main(void) {
 
     __compar_fn_t cmp = &cmp_lt_uint;
 
-    //<editor-fold desc="Print array (pre-merge)">
-    printf("Array pre-merge:\n");
+    //<editor-fold desc="Print array (pre-sort)">
+    printf("Array pre-sort:\n");
     for (int i = 0; i < array_int32_size; ++i) {
         printf("%d ", array_int32[i]);
         if (i == (array_int32_size/2 - 1)) printf("\n");
@@ -34,11 +34,11 @@ int main(void) {
     //</editor-fold>
 
     // merge the first half with the second half
-    merge(array_int32, 6, 4, sizeof(unsigned int), cmp);
+    merge_sort(array_int32, array_int32_size, sizeof(unsigned int), cmp);
 
 
-    //<editor-fold desc="Print array (post-merge)">
-    printf("Array post-merge:\n");
+    //<editor-fold desc="Print array (post-sort)">
+    printf("Array post-sort:\n");
     for (int i = 0; i < array_int32_size; ++i) {
         printf("%d ", array_int32[i]);
         if (i == (array_int32_size/2 - 1)) printf("\n");
