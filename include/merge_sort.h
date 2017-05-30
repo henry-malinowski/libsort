@@ -19,7 +19,7 @@ void merge_sort(void* base, size_t nmemb, size_t size,
  *  \code{.c}
  *      void* end = bound + (size * nmemb2);
  *  \endcode
- *
+ * If the sub-array aren't sorted, then the output in \p base will not sorted.
  * @param base [in,out] The beginning of the contiguous portion of memory to
  *  merge to and from. This must be valid allocated memory from \c base to
  *  \code{.c}
