@@ -3,8 +3,8 @@
 #ifndef SORT_MERGE_H
 #define SORT_MERGE_H
 
-void merge_sort(void* base, size_t nmemb, size_t size,
-                int(*cmp)(const void*, const void*));
+void merge_sort(void *base, size_t nmemb, size_t size,
+                int(*cmp)(const void *, const void *));
 
 /**
  * @brief Merges two portions of contiguous memory.
@@ -32,7 +32,7 @@ void merge_sort(void* base, size_t nmemb, size_t size,
  *  return a negative integer if the first arg is "greater than" the second arg;
  *  this indicates a swap should occur. In other words this function follows
  *  qsort's comparator function pattern.
- *
+ * @returns A non-zero value if memory allocation failed.
  * <b>Example usage:</b>
  * @code{.c}
  *  merge(array, 10, 10, sizeof(array[0]), cmp_func);
@@ -41,6 +41,6 @@ void merge_sort(void* base, size_t nmemb, size_t size,
  *  Merge Sort | Wikipedia </a>
  */
 void merge(void* base, size_t nmemb1, size_t nmemb2, size_t size,
-           int(*cmp)(const void*, const void*));
+           int(*cmp)(const void *, const void *));
 
 #endif /* SORT_MERGE_H */

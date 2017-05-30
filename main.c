@@ -20,7 +20,7 @@ union u_seed {
 
 int main(void) {
     // Declare array of uint32_t
-    float array_float[645462] = {0};
+    float array_float[8409] = {0};
     const size_t len_array_float = ARRAY_SIZE(array_float);
 
     __compar_fn_t cmp = &cmp_less_fp32;

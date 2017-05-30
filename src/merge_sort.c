@@ -5,10 +5,9 @@
 
 
 void
-merge_sort(void* base, size_t nmemb, size_t size,
-           int(*cmp)(const void*, const void*))
+merge_sort(void *base, size_t nmemb, size_t size,
+           int(*cmp)(const void *, const void *))
 {
-    /*  */
     size_t half_memb;
     char* middle_ptr;
 
@@ -24,8 +23,8 @@ merge_sort(void* base, size_t nmemb, size_t size,
 
 
 void
-merge(void* base, size_t nmemb1, size_t nmemb2, size_t size,
-      int(*cmp)(const void*, const void*))
+merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
+      int(*cmp)(const void *, const void *))
 {
 
     /*       array1: The iterator for moving through the first array
@@ -41,7 +40,7 @@ merge(void* base, size_t nmemb1, size_t nmemb2, size_t size,
     char* const array2_limit = array2 + size*nmemb2;
     char* const target = calloc(nmemb1+nmemb2, size);
     if (target == NULL) {
-        exit(1);
+        exit(2);
     }
     char* t_iter = target;
 
