@@ -8,13 +8,19 @@ void
 merge_sort(void* base, size_t nmemb, size_t size,
            int(*cmp)(const void*, const void*))
 {
+    if (nmemb <= 1) return;
 
+    size_t half_memb = nmemb/2 + nmemb%2;
+    char* middle_ptr = (char*) base + (half_memb*size);
+
+    merge_sort(base, nmemb/2, size, cmp);
+    merge_sort(middle_ptr, half_memb, size, cmp);
 }
 
 
 void
 merge(void* base, size_t nmemb1, size_t nmemb2, size_t size,
-           int(*cmp)(const void*, const void*))
+      int(*cmp)(const void*, const void*))
 {
 
     /*       array1: The iterator for moving through the first array
