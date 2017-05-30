@@ -8,6 +8,7 @@ void
 merge_sort(void* base, size_t nmemb, size_t size,
            int(*cmp)(const void*, const void*))
 {
+    /*  */
     size_t half_memb;
     char* middle_ptr;
 

@@ -5,8 +5,10 @@
 
 #include "mt19937-64.h"
 
-#include "./include/comparisons_ints.h"
+#include "./include/comparisons_floats.h"
 #include "include/merge_sort.h"
+#include "tests/array_generators.h"
+#include "include/issorted.h"
 
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
 
@@ -17,32 +19,54 @@ union u_seed {
 
 
 int main(void) {
-    unsigned int array_int32[10] = {
-            1, 3, 4, 7, 8, 10,
-            2, 5, 6, 9
-    };
-    const size_t array_int32_size = ARRAY_SIZE(array_int32);
+    // Declare array of uint32_t
+    float array_float[3] = {0};
+    const size_t len_array_float = ARRAY_SIZE(array_float);
 
-    __compar_fn_t cmp = &cmp_lt_uint;
+    __compar_fn_t cmp = &cmp_less_fp32;
 
-    //<editor-fold desc="Print array (pre-sort)">
-    printf("Array pre-sort:\n");
-    for (int i = 0; i < array_int32_size; ++i) {
-        printf("%d ", array_int32[i]);
-        if (i == (array_int32_size/2 - 1)) printf("\n");
-    } printf("\n\n");
+    // fill it with shorts from Mersenne Twister
+    uint64_t seed = array_fill_fp32(array_float, len_array_float, mt_seed, rand_float);
+    printf("Mersenne Twister seed: %zu\n", seed);
+    printf("Generated %zu floats\n\n", len_array_float);
+
+    //<editor-fold desc="Display contents (array_float pre-sort)">
+    if (len_array_float <= 128) {
+        for (size_t i = 0; i < len_array_float; ++i) {
+            printf("%6.2f, ", array_float[i]);
+            if ((i + 1) % 16 == 0) printf("\n");
+        }
+        printf("\n");
+    }
+
+    printf("\n");
     //</editor-fold>
 
-    // merge the first half with the second half
-    merge_sort(array_int32, array_int32_size, sizeof(unsigned int), cmp);
+    double start = omp_get_wtime();
+    //qsort(array_float, len_array_float, sizeof(float), cmp);
+    //insertion_sort(array_float, len_array_float, sizeof(float), cmp);
+    //selection_sort(array_float, len_array_float, sizeof(float), cmp);
+    //bubble_sort(array_float, len_array_float, sizeof(float), cmp);
+    merge_sort(array_float, len_array_float, sizeof(float), cmp);
+    double delta = omp_get_wtime() - start;
 
+    //<editor-fold desc="Check if the array is sorted">
+    int issort = issorted(array_float, len_array_float, sizeof(float), cmp);
+    if (issort) {
+        printf("array is sorted in %.4f sec.\n", delta);
+    } else {
+        printf("\narray is not sorted\n");
+    }
+    //</editor-fold>
 
-    //<editor-fold desc="Print array (post-sort)">
-    printf("Array post-sort:\n");
-    for (int i = 0; i < array_int32_size; ++i) {
-        printf("%d ", array_int32[i]);
-        if (i == (array_int32_size/2 - 1)) printf("\n");
-    } printf("\n");
+    //<editor-fold desc="Display contents (array_float)">
+    if (len_array_float <= 128) {
+        for (size_t i = 0; i < len_array_float; ++i) {
+            printf("%6.2f, ", array_float[i]);
+            if ((i+1)% 16 == 0) printf("\n");
+        }
+    }
+    printf("\n");
     //</editor-fold>
 }
 
