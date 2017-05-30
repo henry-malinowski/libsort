@@ -16,9 +16,9 @@ merge_sort(void* base, size_t nmemb, size_t size,
         half_memb = nmemb / 2 + nmemb % 2;
         middle_ptr = (char *) base + (half_memb * size);
 
-        merge_sort(base, nmemb / 2, size, cmp);
-        merge_sort(middle_ptr, half_memb, size, cmp);
-        merge(base, nmemb / 2, half_memb, size, cmp);
+        merge_sort(base, half_memb, size, cmp);
+        merge_sort(middle_ptr, nmemb / 2, size, cmp);
+        merge(base, half_memb, nmemb / 2, size, cmp);
     }
 }
 
