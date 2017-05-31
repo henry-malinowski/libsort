@@ -115,4 +115,4 @@ int cmp_great_fp64(const void* p, const void* q);
 int cmp_great_fp128(const void* p, const void* q);
 
 
-#endif //COMPARISONS_FLOATS_H
+#endif /* COMPARISONS_FLOATS_H */

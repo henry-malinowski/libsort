@@ -1,8 +1,54 @@
+/**
+ * @file
+ * A C header file that includes a type agnostic merge sort.
+ *
+ * @copyright (C) 2017 Henry Malinowski <malinowski.henry@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 #include <stddef.h>
 
 #ifndef SORT_MERGE_H
 #define SORT_MERGE_H
 
+/**
+ * @brief Performs merge sort on an arbitrarily typed array.
+ * @details This specific implementation could be described as a "pure" top-down
+ *  merge sort in that in contains no optimizations; e.g. fallback sorting
+ *  algorithms for certain cases or block merging.
+ * @param base   [in,out] A pointer to the beginning of the array.
+ * @param nmbers [in]     The number of items in the array.
+ * @param size   [in]     The size of the individual elements of the array.
+ * @param cmp    [in]     A comparator function for the sort. This function must
+ *  return a negative integer if the first arg is "greater than" the second arg;
+ *  this indicates a swap should occur. In other words this function follows
+ *  qsort's comparator function pattern.
+ *
+ * <b>Example usage:</b>
+ * @code{.c}
+ *  merge_sort(array, ARRAY_SIZE(array), sizeof(array[0]), cmp_func);
+ * @endcode
+ * @see <a href="https://en.wikipedia.org/wiki/Merge_sort">
+ *  Merge Sort | Wikipedia</a>
+ * @copyright MIT License.
+ */
 void merge_sort(void *base, size_t nmemb, size_t size,
                 int(*cmp)(const void *, const void *));
 
@@ -33,12 +79,14 @@ void merge_sort(void *base, size_t nmemb, size_t size,
  *  this indicates a swap should occur. In other words this function follows
  *  qsort's comparator function pattern.
  * @returns A non-zero value if memory allocation failed.
+ *
  * <b>Example usage:</b>
  * @code{.c}
  *  merge(array, 10, 10, sizeof(array[0]), cmp_func);
  * @endcode
  * @see <a href="https://en.wikipedia.org/wiki/Merge_sort">
  *  Merge Sort | Wikipedia </a>
+ * @copyright MIT License.
  */
 void merge(void* base, size_t nmemb1, size_t nmemb2, size_t size,
            int(*cmp)(const void *, const void *));

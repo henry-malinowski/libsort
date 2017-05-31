@@ -34,7 +34,7 @@
  *  checking if a swap has not occurred at the end of each outer-loop iteration,
  *  as well as decreasing the upper_bound of the outer loop each iteration.
  * @param base   [in,out] A pointer to the beginning of the array.
- * @param nmbers [in]     The number of items in the array.
+ * @param nmemb [in]     The number of items in the array.
  * @param size   [in]     The size of the individual elements of the array.
  * @param cmp    [in]     A comparator function for the sort. This function must
  *  return a negative integer if the first arg is "greater than" the second arg;
@@ -49,7 +49,7 @@
  * Bubble sort | Wikipedia</a>
  * @copyright MIT License.
  */
-void bubble_sort(void* base, size_t nmbers, size_t size, int (*cmp)(const void*, const void*));
+void bubble_sort(void* base, size_t nmemb, size_t size, int (*cmp)(const void*, const void*));
 
 
 #endif /* SORT_BUBBLE_H */

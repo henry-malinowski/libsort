@@ -5,3 +5,6 @@ seed, int array size
 #quick sort (Hoare paritioning)
 4671040523844506026, 32 # failed to sort, but didn't crash
 4671050390050162593, 32 # failed to sort, but didn't crash
+
+#merge sort
+4685278503551609311, 264851 # n

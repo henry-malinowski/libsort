@@ -48,7 +48,7 @@ partition_lomuto_tests(void)
     ARRAY_TYPE array_type;
 
     uint64_t seed = 0;
-    size_t array_nmbers = 0;
+    size_t array_nmemb = 0;
     size_t type_size = 0;
 
     void* pivot = NULL;
@@ -63,7 +63,7 @@ partition_lomuto_tests(void)
         array_type = (ARRAY_TYPE) (rand() % 5); // 5 is the number of ARRAY_TYPEs
         array_type_name = &array_type_names[(int)array_type];
 
-        array_nmbers = (size_t) 3 + (rand() % 1000);
+        array_nmemb = (size_t) 3 + (rand() % 1000);
 
         //<editor-fold desc="Select element size, pick less_than, and allocate array">
         switch (array_type) {
@@ -89,7 +89,7 @@ partition_lomuto_tests(void)
                 break;
         }
 
-        array = calloc(array_nmbers, type_size);
+        array = calloc(array_nmemb, type_size);
         //</editor-fold>
 
         // check for malloc failure
@@ -101,26 +101,26 @@ partition_lomuto_tests(void)
         //<editor-fold desc="fill the array and store seed used">
         switch (array_type) {
             case INT_16:
-                seed = array_fill_int16_t(array, array_nmbers, seed_prng, mt_rand_uint64);
+                seed = array_fill_int16_t(array, array_nmemb, seed_prng, mt_rand_uint64);
                 break;
             case INT_32:
-                seed = array_fill_int32_t(array, array_nmbers, seed_prng, mt_rand_uint64);
+                seed = array_fill_int32_t(array, array_nmemb, seed_prng, mt_rand_uint64);
                 break;
             case INT_64:
-                seed = array_fill_int64_t(array, array_nmbers, seed_prng, mt_rand_uint64);
+                seed = array_fill_int64_t(array, array_nmemb, seed_prng, mt_rand_uint64);
                 break;
             case FP32:
-                seed = array_fill_fp32(array, array_nmbers, seed_prng, rand_float);
+                seed = array_fill_fp32(array, array_nmemb, seed_prng, rand_float);
                 break;
             case FP64:
-                seed = array_fill_fp64(array, array_nmbers, seed_prng, rand_double);
+                seed = array_fill_fp64(array, array_nmemb, seed_prng, rand_double);
                 break;
         }
         //</editor-fold>
 
 
-        pivot = partition_lomuto(array, array_nmbers, type_size, less_than);
-        is_part = partition_verify(array, array_nmbers, type_size, less_than, pivot);
+        pivot = partition_lomuto(array, array_nmemb, type_size, less_than);
+        is_part = partition_verify(array, array_nmemb, type_size, less_than, pivot);
 
         free(array);
 
@@ -137,7 +137,7 @@ partition_lomuto_tests(void)
                 "  ├seed: %zu\n"
                 "  ├size: %zu\n"
                 "  └type: %s\n\n",
-                seed, array_nmbers, *array_type_name
+                seed, array_nmemb, *array_type_name
         );
     }
 
@@ -154,6 +154,6 @@ partition_lomuto_tests(void)
             total_tests, passes, total_tests-passes
     );
     if (malloc_failed) {
-        fprintf(stderr, "fatal: calloc failed to allocate %zu bytes\n", array_nmbers*type_size);
+        fprintf(stderr, "fatal: calloc failed to allocate %zu bytes\n", array_nmemb*type_size);
     }
 }

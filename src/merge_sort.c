@@ -1,3 +1,27 @@
+/**
+ * A C source file that includes a type agnostic merge sort.
+ *
+ * @copyright (C) 2017 Henry Malinowski <malinowski.henry@gmail.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 #include "../include/merge_sort.h"
 
 #include <stdlib.h>
@@ -49,6 +73,9 @@ merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
      */
     while (array1 < array1_limit && array2 < array2_limit)
     {
+        /* If the element in array1 is greater than
+         * or equal to the element in array2
+         */
         if (cmp(array1, array2) <= 0)
         {
             memcpy(t_iter, array1, size);
