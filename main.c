@@ -17,8 +17,8 @@
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
 
 union u_seed {
-    double d;
-    uint64_t i;
+    double d;   /**< Time from omp_get_wtime as a double        */
+    uint64_t i; /**< Time from omp_get_wtime as in a uint64_t   */
 };
 
 

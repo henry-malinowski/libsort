@@ -35,7 +35,8 @@ merge_sort(void *base, size_t nmemb, size_t size,
     size_t half_memb;
     char* middle_ptr;
 
-    if (nmemb > 1) {
+    if (nmemb > 1)
+    {
         half_memb = nmemb / 2 + nmemb % 2;
         middle_ptr = (char *) base + (half_memb * size);
 
@@ -63,7 +64,8 @@ merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
     char* array2 = (char*) base + size*nmemb1;
     char* const array2_limit = array2 + size*nmemb2;
     char* const target = calloc(nmemb1+nmemb2, size);
-    if (target == NULL) {
+    if (target == NULL)
+    {
         exit(2);
     }
     char* t_iter = target;

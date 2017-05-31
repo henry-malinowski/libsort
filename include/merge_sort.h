@@ -33,10 +33,10 @@
  * @details This specific implementation could be described as a "pure" top-down
  *  merge sort in that in contains no optimizations; e.g. fallback sorting
  *  algorithms for certain cases or block merging.
- * @param base   [in,out] A pointer to the beginning of the array.
- * @param nmbers [in]     The number of items in the array.
- * @param size   [in]     The size of the individual elements of the array.
- * @param cmp    [in]     A comparator function for the sort. This function must
+ * @param base  [in,out] A pointer to the beginning of the array.
+ * @param nmemb [in]     The number of items in the array.
+ * @param size  [in]     The size of the individual elements of the array.
+ * @param cmp   [in]     A comparator function for the sort. This function must
  *  return a negative integer if the first arg is "greater than" the second arg;
  *  this indicates a swap should occur. In other words this function follows
  *  qsort's comparator function pattern.
@@ -78,12 +78,12 @@ void merge_sort(void *base, size_t nmemb, size_t size,
  *  return a negative integer if the first arg is "greater than" the second arg;
  *  this indicates a swap should occur. In other words this function follows
  *  qsort's comparator function pattern.
- * @returns A non-zero value if memory allocation failed.
- *
  * <b>Example usage:</b>
  * @code{.c}
  *  merge(array, 10, 10, sizeof(array[0]), cmp_func);
  * @endcode
+ * @note If memory fails to be allocated in merge() the calling program will
+ *  exit with code 2.
  * @see <a href="https://en.wikipedia.org/wiki/Merge_sort">
  *  Merge Sort | Wikipedia </a>
  * @copyright MIT License.
