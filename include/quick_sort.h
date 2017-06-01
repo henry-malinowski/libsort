@@ -50,6 +50,7 @@
  * Quicksort | Wikipedia</a>
  * @copyright MIT License.
  */
-void quick_sort(void* base, size_t nmbers, size_t size, int (*cmp)(const void*, const void*));
+void quick_sort(void* base, size_t nmbers, size_t size,
+                int (*cmp)(const void*, const void*));
 
 #endif /* SORT_QUICK_H */

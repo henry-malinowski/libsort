@@ -16,6 +16,7 @@ This would follow the prototype that the C standard outlines for `qsort`.
 * [Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
 * [Quick Sort](https://en.wikipedia.org/wiki/Quicksort)
 * [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort)
+* [Heap Sort](https://en.wikipedia.org/wiki/Heapsort)
 * [Sorting networks of sizes 2 to 8 wires](https://en.wikipedia.org/wiki/Sorting_network)
 
 ### Non-Comparative sorts
@@ -28,13 +29,13 @@ Behavior for sorting non-integer types would be undefined, but the functions
  would support sorting of any integer type.
 
 ### Assisting functions
-* Quick verify sort
-* [Through verify sort](https://4z2.de/2016/02/07/verifying-sorting-algorithms)
+* Verify sort
 * [Lomuto's partition](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
 * [Hoare's partition](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme)
 * Verify partition
 * [Array merge](https://en.wikipedia.org/wiki/Merge_algorithm#Merging_two_lists)
 * In-place array merge
+* Heapify & Shift-down
 
 This library will also have will also come with some testing functions to debug 
 and verify the result of the sorting and partitioning functions. To achieve this

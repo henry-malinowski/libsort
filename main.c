@@ -25,7 +25,7 @@ union u_seed {
 int main(void) {
     // Declare array of floats
     double start, delta;
-    const size_t len_array_double = 32;
+    size_t const len_array_double = 32;
     double* array_double = calloc(len_array_double, sizeof(double));
 
     __compar_fn_t cmp = &cmp_great_fp64;
