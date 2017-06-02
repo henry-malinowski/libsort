@@ -16,12 +16,6 @@
 
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
 
-union u_seed {
-    double d;   /**< Time from omp_get_wtime as a double        */
-    uint64_t i; /**< Time from omp_get_wtime as in a uint64_t   */
-};
-
-
 int main(void) {
     // Declare array of floats
     double start, delta;
@@ -52,8 +46,8 @@ int main(void) {
     //insertion_sort(array_double, len_array_double, sizeof(double), cmp);
     //selection_sort(array_double, len_array_double, sizeof(double), cmp);
     //bubble_sort(array_double, len_array_double, sizeof(double), cmp);
-    //merge_sort(array_double, len_array_double, sizeof(double), cmp);
-    quick_sort(array_double, len_array_double, sizeof(double), cmp);
+    merge_sort(array_double, len_array_double, sizeof(double), cmp);
+    //quick_sort(array_double, len_array_double, sizeof(double), cmp);
     delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">

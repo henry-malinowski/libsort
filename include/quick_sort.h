@@ -44,7 +44,7 @@
  *
  * <b>Example usage:</b>
  * @code{.c}
- *  quick_sort(array, sizeof(array)/sizeof(array[0]), sizeof(array[0]), cmp_func);
+ *  quick_sort(array, ARRAY_SIZE(array), sizeof(array[0]), cmp_func);
  * @endcode
  * @see <a href="https://en.wikipedia.org/wiki/Quicksort">
  * Quicksort | Wikipedia</a>

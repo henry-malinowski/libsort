@@ -24,8 +24,6 @@
  */
 
 #include <malloc.h>
-#include <assert.h>
-#include <string.h>
 #include "../include/partition.h"
 
 /**
@@ -132,7 +130,6 @@ partition_hoare(void *base, size_t nmbers, size_t size,
     char* j = (char*) base + ((nmbers-1)*size);
     char* pivot = malloc(size);
 
-    assert(pivot != NULL);
     COPY(pivot, base, size);
 
     //memcpy(pivot, base, size);
