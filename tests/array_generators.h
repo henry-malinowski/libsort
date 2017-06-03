@@ -49,6 +49,11 @@ uint64_t array_fill_fp64(double* a, size_t nmemb, void (*rseed)(uint64_t),
 void seed_prng(uint64_t seed);
 
 
+/* Returns a uint64_t that contains to 32-bit numbers less than 30.
+ */
+uint64_t little_rand(void);
+
+
 /**
  * Uses mt_mt_rand_double_1 to return a pseudo-random number on the
  *  real-interval\f$[0,1000]\f$.

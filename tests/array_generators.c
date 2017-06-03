@@ -156,6 +156,16 @@ array_fill_int64_t(int64_t* a, size_t nmemb, void (*rseed)(uint64_t),
     return seed.d;
 }
 
+
+uint64_t
+little_rand(void) {
+    rand_int32_t nums = {.num=mt_rand_uint64()};
+    nums.a[0] %= 30;
+    nums.a[1] %= 30;
+    return nums.num;
+}
+
+
 void
 seed_prng(uint64_t seed) {
     mt_seed(seed);
