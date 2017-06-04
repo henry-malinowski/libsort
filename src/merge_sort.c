@@ -27,6 +27,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+char* ms_target;
 
 void
 merge_sort(void *base, size_t nmemb, size_t size,
@@ -34,6 +35,17 @@ merge_sort(void *base, size_t nmemb, size_t size,
 {
     size_t half_memb;
     char* middle_ptr;
+    int ms_alloc = 0;
+
+    /* If the target is not allocated, allocate the target array */
+    if (ms_target == NULL)
+    {
+        ms_target = calloc(nmemb, size);
+        if (ms_target == NULL)
+            exit(2);
+        else
+            ms_alloc = 1;
+    }
 
     if (nmemb > 1)
     {
@@ -44,6 +56,9 @@ merge_sort(void *base, size_t nmemb, size_t size,
         merge_sort(middle_ptr, nmemb / 2, size, cmp);
         merge(base, half_memb, nmemb / 2, size, cmp);
     }
+
+    if (ms_alloc == 1)
+        free(ms_target);
 }
 
 
@@ -63,12 +78,16 @@ merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
     char* const array1_limit = (char*) base + size*nmemb1;
     char* array2 = (char*) base + size*nmemb1;
     char* const array2_limit = array2 + size*nmemb2;
+    /*
     char* const target = calloc(nmemb1+nmemb2, size);
     if (target == NULL)
     {
         exit(2);
     }
     char* t_iter = target;
+    */
+
+    char* t_iter = ms_target;
 
     /* Copy values from array1 and array2 into target
      * until all the values from one is exhausted
@@ -109,6 +128,9 @@ merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
     }
 
     /* Copy all the vales of target back into base and free the temp array */
+    /*
     memcpy(base, target, size*(nmemb1+nmemb2));
     free(target);
+    */
+    memcpy(base, ms_target, size*(nmemb1+nmemb2));
 }

@@ -20,7 +20,7 @@
 int main(void) {
     // Declare array of floats
     double start, delta;
-    size_t const len_array_int = 6541684;
+    size_t const len_array_int = 2541684;
     int32_t* array_int = calloc(len_array_int, sizeof(int32_t));
 
     __compar_fn_t cmp = cmp_less_int32;
@@ -47,10 +47,9 @@ int main(void) {
     //insertion_sort(array_int, len_array_int, sizeof(int), cmp);
     //selection_sort(array_int, len_array_int, sizeof(int), cmp);
     //bubble_sort(array_int, len_array_int, sizeof(int), cmp);
-    //merge_sort(array_int, len_array_int, sizeof(int), cmp);
+    merge_sort(array_int, len_array_int, sizeof(int), cmp);
     //quick_sort(array_int, len_array_int, sizeof(int), cmp);
-    //hs_build_heap(array_int, len_array_int, sizeof(int), cmp);
-    heap_sort(array_int, len_array_int, sizeof(int), cmp);
+    //heap_sort(array_int, len_array_int, sizeof(int), cmp);
     delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
