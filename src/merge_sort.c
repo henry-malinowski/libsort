@@ -27,7 +27,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* ms_target;
+char* volatile ms_target;
 
 void
 merge_sort(void *base, size_t nmemb, size_t size,
@@ -75,14 +75,12 @@ merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
      * array1_limit: The upper bound for array1
      * array2_limit: The upper bound for array2
      *       t_iter: The iterator for the merge-sort temporary array.
-     *  frame_start: The beginning of the copy target block.
      */
     char* array1 = (char*) base;
     char* const array1_limit = (char*) base + size*nmemb1;
     char* array2 = (char*) base + size*nmemb1;
     char* const array2_limit = array2 + size*nmemb2;
-    char* t_iter = ms_target + (nmemb1 * size);
-    char* const frame_start = t_iter;
+    char* t_iter = ms_target;
 
     /* Copy values from array1 and array2 into target
      * until all the values from one is exhausted
@@ -123,5 +121,5 @@ merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
     }
 
     /* Copy all the vales of target back into base */
-    memcpy(base, frame_start, size*(nmemb1+nmemb2));
+    memcpy(base, ms_target, size*(nmemb1+nmemb2));
 }
