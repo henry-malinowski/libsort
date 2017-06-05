@@ -72,5 +72,6 @@ int main(void) {
     //</editor-fold>
 
     free(array_int);
+    return 0;
 }
 
