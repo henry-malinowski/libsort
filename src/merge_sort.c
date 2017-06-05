@@ -37,7 +37,9 @@ merge_sort(void *base, size_t nmemb, size_t size,
     char* middle_ptr;
     int ms_alloc = 0;
 
-    /* If the target is not allocated, allocate the target array */
+    /* If the target is not allocated, allocate the target array, and
+     * set the allocation flag (ms_alloc).
+     */
     if (ms_target == NULL)
     {
         ms_target = calloc(nmemb, size);
@@ -50,13 +52,14 @@ merge_sort(void *base, size_t nmemb, size_t size,
     if (nmemb > 1)
     {
         half_memb = nmemb / 2 + nmemb % 2;
-        middle_ptr = (char *) base + (half_memb * size);
+        middle_ptr = (char*) base + (half_memb * size);
 
         merge_sort(base, half_memb, size, cmp);
         merge_sort(middle_ptr, nmemb / 2, size, cmp);
         merge(base, half_memb, nmemb / 2, size, cmp);
     }
 
+    /* Only the original allocation will be freed in the lowest stack frame. */
     if (ms_alloc == 1)
         free(ms_target);
 }
@@ -71,23 +74,15 @@ merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
      *       array2: The iterator for moving through the second array
      * array1_limit: The upper bound for array1
      * array2_limit: The upper bound for array2
-     *       target: The array to copy array1 and array2 into
-     *       t_iter: The iterator for the target array.
+     *       t_iter: The iterator for the merge-sort temporary array.
+     *  frame_start: The beginning of the copy target block.
      */
     char* array1 = (char*) base;
     char* const array1_limit = (char*) base + size*nmemb1;
     char* array2 = (char*) base + size*nmemb1;
     char* const array2_limit = array2 + size*nmemb2;
-    /*
-    char* const target = calloc(nmemb1+nmemb2, size);
-    if (target == NULL)
-    {
-        exit(2);
-    }
-    char* t_iter = target;
-    */
-
-    char* t_iter = ms_target;
+    char* t_iter = ms_target + (nmemb1 * size);
+    char* const frame_start = t_iter;
 
     /* Copy values from array1 and array2 into target
      * until all the values from one is exhausted
@@ -127,10 +122,6 @@ merge(void *base, size_t nmemb1, size_t nmemb2, size_t size,
         t_iter += size;
     }
 
-    /* Copy all the vales of target back into base and free the temp array */
-    /*
-    memcpy(base, target, size*(nmemb1+nmemb2));
-    free(target);
-    */
-    memcpy(base, ms_target, size*(nmemb1+nmemb2));
+    /* Copy all the vales of target back into base */
+    memcpy(base, frame_start, size*(nmemb1+nmemb2));
 }

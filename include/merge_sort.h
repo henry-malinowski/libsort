@@ -30,9 +30,12 @@
 
 /**
  * @brief Performs merge sort on an arbitrarily typed array.
- * @details This specific implementation could be described as a "pure" top-down
- *  merge sort in that in contains no optimizations; e.g. fallback sorting
- *  algorithms for certain cases or block merging.
+ * @details This specific implementation could be described as a merge sort that
+ *  contains a single optimization; a single allocation is performed for the
+ *  auxiliary array. However, since this is currently a "global variable", the
+ *  current merge sort implementation can't trivially be made multi-thread/core.
+ *  It also does not contain fallback sorting algorithms for certain cases or
+ *  block merging.
  * @param base  [in,out] A pointer to the beginning of the array.
  * @param nmemb [in]     The number of items in the array.
  * @param size  [in]     The size of the individual elements of the array.

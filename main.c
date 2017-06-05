@@ -20,7 +20,7 @@
 int main(void) {
     // Declare array of floats
     double start, delta;
-    size_t const len_array_int = 2541684;
+    size_t const len_array_int = 32456245;
     int32_t* array_int = calloc(len_array_int, sizeof(int32_t));
 
     __compar_fn_t cmp = cmp_less_int32;
@@ -55,9 +55,9 @@ int main(void) {
     //<editor-fold desc="Check if the array is sorted">
     int issort = issorted(array_int, len_array_int, sizeof(int32_t), cmp);
     if (issort) {
-        printf("array is sorted in %.4f sec.\n", delta);
+        printf("array was sorted in %.4f sec.\n", delta);
     } else {
-        printf("array is not sorted\n");
+        printf("array failed to sort\n");
     }
     //</editor-fold>
 
