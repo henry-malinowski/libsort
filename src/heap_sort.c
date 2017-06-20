@@ -113,7 +113,7 @@ hs_heapify(void* base, size_t nmemb, size_t size,
 
     /* If the left-child of i_start is valid AND
      *  it is greater than the i_start ...
-     *   + reassign largest_* to be the left-child
+     *   - reassign largest_* to be the left-child
      */
     if (left_ptr < limit && cmp(left_ptr, largest_ptr) > 0)
     {
@@ -123,7 +123,7 @@ hs_heapify(void* base, size_t nmemb, size_t size,
 
     /* If the right-child of i_start is valid AND
      *  it is greater than the largest_* found so far ...
-     *   + reassign largest_* to be the right-child
+     *   - reassign largest_* to be the right-child
      */
     if (right_ptr < limit && cmp(right_ptr, largest_ptr) > 0)
     {
@@ -132,8 +132,8 @@ hs_heapify(void* base, size_t nmemb, size_t size,
     }
 
     /* If the largest index is no longer i_start...
-     *  + swap the contents of the left or right child with i_start
-     *  + recursively fix the heap down starting from the new largest index.
+     *  - swap the contents of the left or right child with i_start
+     *  - recursively fix the heap down starting from the new largest index.
      */
     if (largest_idx != i_start)
     {
