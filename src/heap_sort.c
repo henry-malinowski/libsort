@@ -67,7 +67,7 @@ heap_sort(void* base, size_t nmemb, size_t size,
     char* last = first + (nmemb-1)*size;
     hs_build_heap(base, nmemb, size, cmp);
 
-    /* - Swap the first and last elements of the array.
+    /* - Swap the first and 'last' elements of the array.
      * - Decrease the the array bounds the 1 element.
      * - Fix the heap starting from the first element.
      */

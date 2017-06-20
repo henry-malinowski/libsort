@@ -5,7 +5,7 @@
 
 #include "mt19937-64.h"
 
-#include "./include/comparisons_stdint.h"
+#include "./include/comparisons_floats.h"
 #include "include/merge_sort.h"
 #include "tests/array_generators.h"
 #include "include/issorted.h"
@@ -20,22 +20,22 @@
 int main(void) {
     // Declare array of floats
     double start, delta;
-    size_t const len_array_int = 32456245;
-    int32_t* array_int = calloc(len_array_int, sizeof(int32_t));
+    size_t const len_array_double = 2456245;
+    double* array_double = calloc(len_array_double, sizeof(double));
 
-    __compar_fn_t cmp = cmp_less_int32;
+    __compar_fn_t cmp = cmp_less_fp64;
 
     // fill it with shorts from Mersenne Twister
     start = omp_get_wtime();
-    uint64_t seed = array_fill_int32_t(array_int, len_array_int, mt_seed, mt_rand_uint64);
+    uint64_t seed = array_fill_fp64(array_double, len_array_double, mt_seed, mt_rand_double_1);
     delta = omp_get_wtime() - start;
     printf("Mersenne Twister seed: %zu\n", seed);
-    printf("Generated %zu floats in %.4f sec.\n\n", len_array_int, delta);
+    printf("Generated %zu floats in %.4f sec.\n\n", len_array_double, delta);
 
-    //<editor-fold desc="Display contents (array_int pre-sort)">
-    if (len_array_int <= 128) {
-        for (size_t i = 0; i < len_array_int; ++i) {
-            printf("%3d, ", array_int[i]);
+    //<editor-fold desc="Display contents (array_double pre-sort)">
+    if (len_array_double <= 128) {
+        for (size_t i = 0; i < len_array_double; ++i) {
+            printf("%.2f, ", array_double[i]);
             if ((i + 1) % 16 == 0) printf("\n");
         }
         printf("\n\n");
@@ -43,17 +43,17 @@ int main(void) {
     //</editor-fold>
 
     start = omp_get_wtime();
-    //qsort(array_int, len_array_int, sizeof(int), cmp);
-    //insertion_sort(array_int, len_array_int, sizeof(int), cmp);
-    //selection_sort(array_int, len_array_int, sizeof(int), cmp);
-    //bubble_sort(array_int, len_array_int, sizeof(int), cmp);
-    merge_sort(array_int, len_array_int, sizeof(int), cmp);
-    //quick_sort(array_int, len_array_int, sizeof(int), cmp);
-    //heap_sort(array_int, len_array_int, sizeof(int), cmp);
+    //qsort(array_double, len_array_double, sizeof(double), cmp);
+    //insertion_sort(array_double, len_array_double, sizeof(double), cmp);
+    //selection_sort(array_double, len_array_double, sizeof(double), cmp);
+    //bubble_sort(array_double, len_array_double, sizeof(double), cmp);
+    //merge_sort(array_double, len_array_double, sizeof(double), cmp);
+    //quick_sort(array_double, len_array_double, sizeof(double), cmp);
+    heap_sort(array_double, len_array_double, sizeof(double), cmp);
     delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
-    int issort = issorted(array_int, len_array_int, sizeof(int32_t), cmp);
+    int issort = issorted(array_double, len_array_double, sizeof(double), cmp);
     if (issort) {
         printf("array was sorted in %.4f sec.\n", delta);
     } else {
@@ -61,17 +61,17 @@ int main(void) {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Display contents (array_int)">
-    if (len_array_int <= 128) {
-        for (size_t i = 0; i < len_array_int; ++i) {
-            printf("%3d, ", array_int[i]);
+    //<editor-fold desc="Display contents (array_double)">
+    if (len_array_double <= 128) {
+        for (size_t i = 0; i < len_array_double; ++i) {
+            printf("%.2f, ", array_double[i]);
             if ((i+1)% 16 == 0) printf("\n");
         }
         printf("\n");
     }
     //</editor-fold>
 
-    free(array_int);
+    free(array_double);
     return 0;
 }
 
