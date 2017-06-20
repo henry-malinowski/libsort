@@ -17,6 +17,8 @@
 
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
 
+typedef void (*sorting_function_t)(void*, size_t, size_t, __compar_fn_t);
+
 int main(void) {
     // Declare array of floats
     double start, delta;
@@ -24,6 +26,7 @@ int main(void) {
     double* array_double = calloc(len_array_double, sizeof(double));
 
     __compar_fn_t cmp = cmp_less_fp64;
+    sorting_function_t sorting_function = qsort;
 
     // fill it with shorts from Mersenne Twister
     start = omp_get_wtime();
@@ -42,14 +45,9 @@ int main(void) {
     }
     //</editor-fold>
 
+    // Sort the array and store the time duration into 'delta'
     start = omp_get_wtime();
-    //qsort(array_double, len_array_double, sizeof(double), cmp);
-    //insertion_sort(array_double, len_array_double, sizeof(double), cmp);
-    //selection_sort(array_double, len_array_double, sizeof(double), cmp);
-    //bubble_sort(array_double, len_array_double, sizeof(double), cmp);
-    //merge_sort(array_double, len_array_double, sizeof(double), cmp);
-    //quick_sort(array_double, len_array_double, sizeof(double), cmp);
-    heap_sort(array_double, len_array_double, sizeof(double), cmp);
+    sorting_function(array_double, len_array_double, sizeof(double), cmp);
     delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
