@@ -1,4 +1,4 @@
-#include "radix_sort.h"
+#include "../include/radix_sort.h"
 #include <stdint.h>
 
 #define SWAP(TYPE)              \
@@ -17,13 +17,13 @@
 typedef void(*swap_func_t) (void*, void*);
 
 /**
- * @Assists in pointing to the correct swap function from the jump table.
+ * @brief Assists in pointing to the correct swap function from the jump table.
  */
 typedef enum {
-    INT8  = 1,
-    INT16 = 2,
-    INT32 = 4,
-    INT64 = 8
+    INT8  = 1, /**< Indicates the use of a 1 byte or 8-bit integer type.  */
+    INT16 = 2, /**< Indicates the use of a 2 byte or 16-bit integer type. */
+    INT32 = 4, /**< Indicates the use of a 4 byte or 32-bit integer type. */
+    INT64 = 8  /**< Indicates the use of a 6 byte or 64-bit integer type. */
 } SWAP_SIZE;
 
 swap_func_t swap_functions[] = {NULL,
@@ -32,7 +32,7 @@ swap_func_t swap_functions[] = {NULL,
 
 void
 radix_sort_lsd(void *base, size_t nmemb, size_t size,
-               int(*cmp)(const void *, const void *))
+               unsigned (*mod)(const void *, unsigned base))
 {
     // Matches the swap function to a pointer in the swap_functions jump-table.
     //swap_func_t swap = swap_functions[size]; // swap may equal NULL
@@ -86,3 +86,4 @@ swap_int64(void* a, void* b)
 {
     SWAP(int64_t);
 }
+
