@@ -7,7 +7,10 @@ allow for sorts be be called as...
 ```c
     insertion_sort(array, ARRAY_SIZE(array), sizeof(array[0]), cmpfunc);
 ```
-This would follow the prototype that the C standard outlines for `qsort`.
+This would follow the prototype that the C standard outlines for `qsort`. The 
+one exception to this being the non-comparative sorts. For example, radix sort 
+ will require `unsigned mod(void* num, unsigned base)`, where `num` is a pointer
+ to some unsigned integer type.
 
 ### Comparative sorts
 * [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
