@@ -39,9 +39,16 @@ Behavior for sorting non-integer types would be undefined, but the functions
 * [Array merge](https://en.wikipedia.org/wiki/Merge_algorithm#Merging_two_lists)
 * In-place array merge
 * Heapify & Shift-down
+* [PCG PRNG](http://www.pcg-random.org/)
 
 This library will also have will also come with some testing functions to debug 
 and verify the result of the sorting and partitioning functions. To achieve this
 goal the library will also come with some nice generator functions, so that one
 can quickly fill arrays with random data. These will also be easily extensible 
 due to the extensive use of function pointers in the generator functions.
+
+At the moment, a 64-bit implementation of the Merssen Twister is used. For 
+quickly testing all the sorts, it is too slow for the generation of the arrays
+and dosen't provide any special quality of numbers that justify its slowness.
+For this reason, a migration will be made to a C implimenation of the PCG 
+family of pseudo-random number generators.

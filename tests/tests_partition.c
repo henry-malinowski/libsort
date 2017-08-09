@@ -1,3 +1,4 @@
+#include <inttypes.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -134,7 +135,7 @@ partition_lomuto_tests(void)
         }
 
         fprintf(stdout,
-                "  ├seed: %zu\n"
+                "  ├seed: %" PRId64 "\n"
                 "  ├size: %zu\n"
                 "  └type: %s\n\n",
                 seed, array_nmemb, *array_type_name

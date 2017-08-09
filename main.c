@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <omp.h>
-#include <stdint.h>
+#include <inttypes.h>
 #include <stdlib.h>
 
 #include "mt19937-64.h"
@@ -14,6 +14,7 @@
 #include "include/insertion_sort.h"
 #include "include/quick_sort.h"
 #include "include/heap_sort.h"
+#include "tests/tests_partition.h"
 
 #define ARRAY_SIZE(x) (sizeof(x)/(sizeof((x)[0])))
 
@@ -26,13 +27,13 @@ int main(void) {
     double* array_double = calloc(len_array_double, sizeof(double));
 
     __compar_fn_t cmp = cmp_less_fp64;
-    sorting_function_t sorting_function = qsort;
+    sorting_function_t sorting_function = heap_sort;
 
     // fill it with shorts from Mersenne Twister
     start = omp_get_wtime();
     uint64_t seed = array_fill_fp64(array_double, len_array_double, mt_seed, mt_rand_double_1);
     delta = omp_get_wtime() - start;
-    printf("Mersenne Twister seed: %zu\n", seed);
+    printf("Mersenne Twister seed: %" PRId64 "\n", seed);
     printf("Generated %zu floats in %.4f sec.\n\n", len_array_double, delta);
 
     //<editor-fold desc="Display contents (array_double pre-sort)">
@@ -47,7 +48,7 @@ int main(void) {
 
     // Sort the array and store the time duration into 'delta'
     start = omp_get_wtime();
-    sorting_function(array_double, len_array_double, sizeof(double), cmp);
+    //sorting_function(array_double, len_array_double, sizeof(double), cmp);
     delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
@@ -70,6 +71,9 @@ int main(void) {
     //</editor-fold>
 
     free(array_double);
+
+    partition_lomuto_tests();
+
     return 0;
 }
 
