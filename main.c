@@ -48,7 +48,7 @@ int main(void) {
 
     // Sort the array and store the time duration into 'delta'
     start = omp_get_wtime();
-    //sorting_function(array_double, len_array_double, sizeof(double), cmp);
+    sorting_function(array_double, len_array_double, sizeof(double), cmp);
     delta = omp_get_wtime() - start;
 
     //<editor-fold desc="Check if the array is sorted">
@@ -71,8 +71,6 @@ int main(void) {
     //</editor-fold>
 
     free(array_double);
-
-    partition_lomuto_tests();
 
     return 0;
 }
