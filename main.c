@@ -23,11 +23,11 @@ typedef void (*sorting_function_t)(void*, size_t, size_t, __compar_fn_t);
 int main(void) {
     // Declare array of floats
     double start, delta;
-    size_t const len_array_double = 2456245;
+    size_t const len_array_double = 24562;
     double* array_double = calloc(len_array_double, sizeof(double));
 
     __compar_fn_t cmp = cmp_less_fp64;
-    sorting_function_t sorting_function = heap_sort;
+    sorting_function_t sorting_function = selection_sort;
 
     // fill it with shorts from Mersenne Twister
     start = omp_get_wtime();
