@@ -1,3 +1,4 @@
+[//] <> (vim: set ft=markdown)
 # libsort
 A collection of type agnostic sorting algorithms.
 
