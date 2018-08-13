@@ -22,7 +22,6 @@ typedef union {
 } rand_int16_t;
 
 
-
 /**
  * @brief Union that allows for the easy extraction of signed 32 bit values from
  *  an unsigned 64 bit source without using bitwise shifts.
@@ -31,7 +30,6 @@ typedef union {
     uint64_t num;
     int32_t a[2];
 } rand_int32_t;
-
 
 
 uint64_t
