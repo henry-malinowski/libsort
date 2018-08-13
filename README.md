@@ -15,6 +15,7 @@ one exception to this being the non-comparative sorts. For example, radix sort
 
 ### Comparative sorts
 * [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
+* [Gnome Sort](https://en.wikipedia.org/wiki/Gnome_sort)
 * [Shell Sort](https://en.wikipedia.org/wiki/Shellsort)
 * [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
 * [Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
