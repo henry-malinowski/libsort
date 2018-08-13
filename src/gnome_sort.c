@@ -1,5 +1,6 @@
 /**
- * A C source file that includes a type agnostic selection sort.
+ * @file
+ * A source file that includes a type agnostic Gnome sort.
  *
  * @copyright (C) 2017 Henry Malinowski <malinowski.henry@gmail.com>
  *
@@ -22,7 +23,7 @@
  * SOFTWARE.
  */
 
-#include "../include/selection_sort.h"
+#include "../include/gnome_sort.h"
 
 /**
  * @brief Byte-wise swap two items of size \p size.
@@ -40,38 +41,30 @@
         } while (--__size > 0);         \
     }                                   \
 
-
 void
-selection_sort(void* base, size_t nmbers, size_t size,
-               int (*cmp)(const void*, const void*))
+gnome_sort(void* base, size_t nmemb, size_t size,
+           int (*cmp)(const void*, const void*))
 {
-    /* - Initialize upper limit of the array
-     * - Initialize tracking pointers for sorting
-     *  + i: tracks the outer loop
-     *  + j: tracks the inner loop for finding the min
-     *  + min_ptr: the current minimum candidate
+    /* - Initialize upper limit of thew array
+     * - Initialize tracking pointer for sorting
+     *  * i: tracks the current position
+     *
+     *
      */
-    const char* upper_limit = (char*) base + (nmbers*size);
-    char *i, *min_ptr, *j;
 
-    for (i = base; i < (upper_limit - size); i += size)
+    const char* upper_limit = (char*) base + (nmemb * size);
+    char* i = base;
+
+    while (i < upper_limit)
     {
-        /* min = A[i] */
-        min_ptr = i;
-
-        /* find the minimum element in the array */
-        for (j = min_ptr + size; j < upper_limit; j += size)
+        if ((i == base) || (cmp(i, i-size) >= 0))
         {
-            /* if j < min_ptr */
-            if ( cmp(j, min_ptr) < 0 )
-            {
-                min_ptr = j;
-            }
+            i += size;
         }
-
-        /* swap if the min if it is different from j */
-        if (min_ptr != i) {
-            SWAP(min_ptr, i, size);
+        else
+        {
+            SWAP(i, i-size, size);
+            i -= size;
         }
     }
 }

@@ -12,6 +12,7 @@
 #include "include/bubble_sort.h"
 #include "include/selection_sort.h"
 #include "include/insertion_sort.h"
+#include "include/gnome_sort.h"
 #include "include/quick_sort.h"
 #include "include/heap_sort.h"
 #include "tests/tests_partition.h"
@@ -23,15 +24,15 @@ typedef void (*sorting_function_t)(void*, size_t, size_t, __compar_fn_t);
 int main(void) {
     // Declare array of floats
     double start, delta;
-    size_t const len_array_double = 24562;
+    size_t const len_array_double = 4096<<5;
     double* array_double = calloc(len_array_double, sizeof(double));
 
     __compar_fn_t cmp = cmp_less_fp64;
-    sorting_function_t sorting_function = selection_sort;
+    sorting_function_t sorting_function = gnome_sort;
 
     // fill it with shorts from Mersenne Twister
     start = omp_get_wtime();
-    uint64_t seed = array_fill_fp64(array_double, len_array_double, mt_seed, mt_rand_double_1);
+    uint64_t seed = array_fill_fp64(array_double, len_array_double, mt_seed, rand_double);
     delta = omp_get_wtime() - start;
     printf("Mersenne Twister seed: %" PRId64 "\n", seed);
     printf("Generated %zu floats in %.4f sec.\n\n", len_array_double, delta);
