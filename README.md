@@ -1,17 +1,16 @@
-[//] <> (vim: set ft=markdown)
 # libsort
 A collection of type agnostic sorting algorithms.
 
-The ultimate goal of this project is to make a collocation of comparative 
-and non-comparative sorting algorithms in a type agnostic fashion. This would 
-allow for sorts be be called as...
+The ultimate goal of this project is to make a collocation of comparative and non-comparative sorting algorithms in a type agnostic fashion.
+This would allow for sorts be be called as...
+
 ```c
     insertion_sort(array, ARRAY_SIZE(array), sizeof(array[0]), cmpfunc);
 ```
-This would follow the prototype that the C standard outlines for `qsort`. The 
-one exception to this being the non-comparative sorts. For example, radix sort 
- will require `unsigned mod(void* num, unsigned base)`, where `num` is a pointer
- to some unsigned integer type.
+
+This would follow the prototype that the C standard outlines for [`qsort(3)`](https://linux.die.net/man/3/qsort).
+The one exception to this being the non-comparative sorts.
+For example, radix sort will require `unsigned mod(void* num, unsigned base)`, where `num` is a pointer to some unsigned integer type.
 
 ### Comparative sorts
 * [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
@@ -30,8 +29,7 @@ one exception to this being the non-comparative sorts. For example, radix sort
 * [Radix Sort (MSD)](https://en.wikipedia.org/wiki/Radix_sort#Most_significant_digit_radix_sorts)
 * [Bucket Sort](https://en.wikipedia.org/wiki/Bucket_sort)
 
-Behavior for sorting non-integer types would be undefined, but the functions
- would support sorting of any integer type.
+Behavior for sorting non-integer types would be undefined, but the functions would support sorting of any integer type.
 
 ### Assisting functions
 * Verify sort
@@ -43,14 +41,10 @@ Behavior for sorting non-integer types would be undefined, but the functions
 * Heapify & Shift-down
 * [PCG PRNG](http://www.pcg-random.org/)
 
-This library will also have will also come with some testing functions to debug 
-and verify the result of the sorting and partitioning functions. To achieve this
-goal the library will also come with some nice generator functions, so that one
-can quickly fill arrays with random data. These will also be easily extensible 
-due to the extensive use of function pointers in the generator functions.
+This library will also have will also come with some testing functions to debug and verify the result of the sorting and partitioning functions.
+To achieve this goal the library will also come with some nice generator functions, so that one can quickly fill arrays with random data.
+These will also be easily extensible due to the extensive use of function pointers in the generator functions.
 
-At the moment, a 64-bit implementation of the Merssen Twister is used. For 
-quickly testing all the sorts, it is too slow for the generation of the arrays
-and dosen't provide any special quality of numbers that justify its slowness.
-For this reason, a migration will be made to a C implimenation of the PCG 
-family of pseudo-random number generators.
+At the moment, a 64-bit implementation of the Mersenne Twister is used.
+For quickly testing all the sorts, it is too slow for the generation of the arrays and dose not provide any special quality of numbers that justify its slowness.
+For this reason, a migration will be made to a C implementation of the PCG family of pseudo-random number generators.
